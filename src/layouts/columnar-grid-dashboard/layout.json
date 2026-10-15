@@ -1,0 +1,29 @@
+{
+  "id": "columnar-grid-dashboard",
+  "component": "ColumnarGridDashboardLayout",
+  "preview": "ColumnarGridDashboardPreview",
+  "name": "Strict Columnar Grid + Dashboard",
+  "summary": "Dense metric strip over a rigid columnar analysis grid — finance and operations reporting.",
+  "status": "available",
+  "shell": "app-shell-sidebar",
+  "suggestedAudiences": ["erp"],
+  "regions": [
+    { "id": "sidebar", "prop": "sidebar", "required": false },
+    { "id": "topbar", "prop": "topbar", "required": false },
+    { "id": "kpis", "prop": "stats", "required": false },
+    { "id": "grid", "prop": "children", "required": true },
+    { "id": "detail", "prop": "detail", "required": false }
+  ],
+  "requiredComponents": ["AppShell", "Sidebar", "TopBar", "StatCard", "Grid", "Panel", "PageHeader"],
+  "requiredFeatures": ["inventory", "finance"],
+  "breakpoints": {
+    "lg": "4 KPI columns; 2-column analysis grid",
+    "md": "2 KPI columns; grid items stack",
+    "sm": "single column"
+  },
+  "a11y": [
+    "KPI values are text (not colour-only)",
+    "trend direction carries a text label as well as colour",
+    "single <h1> per screen (PageHeader)"
+  ]
+}

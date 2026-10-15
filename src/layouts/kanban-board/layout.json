@@ -1,0 +1,29 @@
+{
+  "id": "kanban-board",
+  "component": "KanbanBoardLayout",
+  "preview": "KanbanBoardPreview",
+  "name": "Kanban Board",
+  "summary": "Horizontally scrolling lanes for pipeline and workflow management.",
+  "status": "available",
+  "shell": "app-shell-sidebar",
+  "suggestedAudiences": ["crm", "erp"],
+  "regions": [
+    { "id": "sidebar", "prop": "sidebar", "required": false },
+    { "id": "topbar", "prop": "topbar", "required": false },
+    { "id": "toolbar", "prop": "toolbar", "required": false },
+    { "id": "board", "prop": "lanes", "required": true },
+    { "id": "detail", "prop": "detail", "required": false }
+  ],
+  "requiredComponents": ["AppShell", "Sidebar", "TopBar", "Toolbar", "Panel", "EmptyState", "PageHeader"],
+  "requiredFeatures": ["accounts", "pipeline"],
+  "breakpoints": {
+    "lg": "lanes scroll horizontally",
+    "md": "lanes keep a min width and scroll",
+    "sm": "single lane per viewport, swipe to scroll"
+  },
+  "a11y": [
+    "each lane is a titled Panel (heading per lane)",
+    "board is reachable by keyboard (no drag-only interactions)",
+    "single <h1> per screen (PageHeader)"
+  ]
+}

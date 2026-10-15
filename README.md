@@ -38,6 +38,30 @@ imports from anywhere but `@agiler/ui`.
 Status is tracked per component in `catalog.json` (`available` | `planned`). The Design agent may
 only use `available` components.
 
+## Layout archetypes
+
+An order also picks a **page skeleton** (v3.1 plan §3.2). Each layout is a React component plus a
+declarative `layout.json` (`src/layouts/<id>/`) that declares its shell, regions, required components,
+**required features** (which drive the quote), responsive behaviour and a11y invariants. The Design
+agent fills **declared regions and nothing else**, so the delivered app matches what was sold.
+
+| Layout | Shell | Suggested audiences | Required features |
+| --- | --- | --- | --- |
+| `bento-grid` | public-shell | portfolio-static/dynamic | landing, gallery, contact |
+| `asymmetrical` | public-shell | portfolio-static/dynamic | landing, gallery, contact |
+| `split-screen` | app-shell-sidebar | crm, erp, healthcare | accounts |
+| `kanban-board` | app-shell-sidebar | crm, erp | accounts, pipeline |
+| `data-table` | app-shell-sidebar | erp, crm | inventory, procurement |
+| `columnar-grid-dashboard` | app-shell-sidebar | erp | inventory, finance |
+| `card-dashboard` | app-shell-sidebar | healthcare, crm, erp | — (recipes land in 12b.3) |
+
+```tsx
+import { SplitScreenLayout, SplitScreenPreview, BentoGridLayout } from '@agiler/ui';
+```
+
+`manifest.json → layouts` is the machine-readable registry (validated in CI); `SplitScreenPreview`
+and friends are inline-SVG wireframes for the order form — no asset plumbing.
+
 ## Consume it
 
 The package is consumed **by exact git tag** (public repo → no tokens anywhere). `dist/` is a build

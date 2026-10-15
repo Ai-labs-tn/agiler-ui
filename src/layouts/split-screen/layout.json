@@ -1,0 +1,28 @@
+{
+  "id": "split-screen",
+  "component": "SplitScreenLayout",
+  "preview": "SplitScreenPreview",
+  "name": "Split-Screen",
+  "summary": "Persistent sidebar navigation with a main work area and an optional detail column.",
+  "status": "available",
+  "shell": "app-shell-sidebar",
+  "suggestedAudiences": ["crm", "erp", "healthcare"],
+  "regions": [
+    { "id": "sidebar", "prop": "sidebar", "required": false },
+    { "id": "topbar", "prop": "topbar", "required": false },
+    { "id": "main", "prop": "children", "required": true },
+    { "id": "detail", "prop": "detail", "required": false }
+  ],
+  "requiredComponents": ["AppShell", "Sidebar", "TopBar", "PageHeader", "Panel", "DataTable"],
+  "requiredFeatures": ["accounts"],
+  "breakpoints": {
+    "lg": "sidebar + main (+ detail column)",
+    "md": "sidebar collapses to a Drawer; detail stacks below",
+    "sm": "single column"
+  },
+  "a11y": [
+    "nav[aria-label=\"Primary\"] for the sidebar",
+    "single <h1> per screen (PageHeader)",
+    "main landmark from AppShell"
+  ]
+}

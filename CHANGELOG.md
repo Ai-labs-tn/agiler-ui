@@ -5,6 +5,24 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-10-15
+
+### Added
+
+- **Composition primitives** (11): `AppShell`, `PublicShell`, `TopNavShell`, `Grid`, `Stack`,
+  `Panel`, `Section`, `PageHeader`, `StatCard`, `Toolbar`, `EmptyState` — the building blocks layout
+  archetypes are assembled from.
+- **Layout archetypes** (7) — the page skeletons an order picks: each is a React component with a
+  declarative `layout.json` contract (shell, regions, required components, required features,
+  breakpoints, a11y invariants) plus an inline-SVG preview for the order form:
+  - portfolio → `bento-grid`, `asymmetrical`
+  - crm → `split-screen`, `kanban-board`
+  - erp → `data-table`, `columnar-grid-dashboard`
+  - healthcare → `card-dashboard`
+- `manifest.json` now carries a validated **`layouts`** section: required components must exist in the
+  catalog, every layout must declare a required region, and each layout must export its component and
+  preview (drift-checked in CI).
+
 ## [0.1.0] — 2026-10-15
 
 ### Added

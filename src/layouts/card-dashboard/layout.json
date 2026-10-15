@@ -1,0 +1,30 @@
+{
+  "id": "card-dashboard",
+  "component": "CardDashboardLayout",
+  "preview": "CardDashboardPreview",
+  "name": "Card-Based Dashboard",
+  "summary": "Friendly, card-first dashboard for people-facing portals (patients, appointments, records).",
+  "status": "available",
+  "shell": "app-shell-sidebar",
+  "suggestedAudiences": ["healthcare", "crm", "erp"],
+  "regions": [
+    { "id": "sidebar", "prop": "sidebar", "required": false },
+    { "id": "topbar", "prop": "topbar", "required": false },
+    { "id": "kpis", "prop": "stats", "required": false },
+    { "id": "cards", "prop": "children", "required": true },
+    { "id": "schedule", "prop": "schedule", "required": false }
+  ],
+  "requiredComponents": ["AppShell", "Sidebar", "TopBar", "StatCard", "Grid", "Card", "Panel", "PageHeader"],
+  "requiredFeatures": [],
+  "breakpoints": {
+    "lg": "3 KPI columns; 3 cards across",
+    "md": "cards wrap to 2 across",
+    "sm": "single column"
+  },
+  "a11y": [
+    "each card exposes its own heading",
+    "status conveyed by text, not colour alone",
+    "single <h1> per screen (PageHeader)"
+  ],
+  "notes": "requiredFeatures is empty until the healthcare recipes land (12b.3) — the backend cross-check treats an empty list as 'no feature constraint'."
+}

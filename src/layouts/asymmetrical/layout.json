@@ -1,0 +1,30 @@
+{
+  "id": "asymmetrical",
+  "component": "AsymmetricalLayout",
+  "preview": "AsymmetricalPreview",
+  "name": "Asymmetrical",
+  "summary": "Editorial 2/3 + 1/3 split for portfolio sites with a dominant featured column.",
+  "status": "available",
+  "shell": "public-shell",
+  "suggestedAudiences": ["portfolio-static", "portfolio-dynamic"],
+  "regions": [
+    { "id": "header", "prop": "header", "required": false },
+    { "id": "hero", "prop": "hero", "required": false },
+    { "id": "primary", "prop": "primary", "required": true },
+    { "id": "secondary", "prop": "secondary", "required": false },
+    { "id": "about", "prop": "about", "required": false },
+    { "id": "contact", "prop": "contact", "required": false },
+    { "id": "footer", "prop": "footer", "required": false }
+  ],
+  "requiredComponents": ["PublicShell", "Panel", "Section", "PageHeader"],
+  "requiredFeatures": ["landing", "gallery", "contact"],
+  "breakpoints": {
+    "lg": "2/3 + 1/3 columns side by side",
+    "md": "columns stack to a single column"
+  },
+  "a11y": [
+    "single <h1> in the hero (PageHeader)",
+    "panels use titled headings for landmark-free grouping",
+    "reading order follows visual order (primary → secondary)"
+  ]
+}

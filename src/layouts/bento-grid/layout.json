@@ -1,0 +1,30 @@
+{
+  "id": "bento-grid",
+  "component": "BentoGridLayout",
+  "preview": "BentoGridPreview",
+  "name": "Bento Grid",
+  "summary": "Modular tile grid for portfolio and marketing sites — hero, highlight tiles, about and contact.",
+  "status": "available",
+  "shell": "public-shell",
+  "suggestedAudiences": ["portfolio-static", "portfolio-dynamic"],
+  "regions": [
+    { "id": "header", "prop": "header", "required": false },
+    { "id": "hero", "prop": "hero", "required": false },
+    { "id": "gallery", "prop": "gallery", "required": true },
+    { "id": "about", "prop": "about", "required": false },
+    { "id": "contact", "prop": "contact", "required": false },
+    { "id": "footer", "prop": "footer", "required": false }
+  ],
+  "requiredComponents": ["PublicShell", "Grid", "Panel", "Section", "PageHeader"],
+  "requiredFeatures": ["landing", "gallery", "contact"],
+  "breakpoints": {
+    "lg": "tiles flow 3–4 across",
+    "md": "tiles flow 2 across",
+    "sm": "single column"
+  },
+  "a11y": [
+    "single <h1> in the hero (PageHeader)",
+    "section headings via Section (h2)",
+    "main + footer landmarks from PublicShell"
+  ]
+}

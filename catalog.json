@@ -521,6 +521,170 @@
       "props": [],
       "a11y": ["role=\"radiogroup\" with labelled radio options (icons carry visually-hidden names)."],
       "snippet": "<ThemeToggle />"
+    },
+    {
+      "name": "AppShell",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/AppShell.tsx",
+      "summary": "Application shell: sidebar + topbar + main grid areas (sidebar collapses below lg).",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "sidebar", "type": "ReactNode" },
+        { "name": "topbar", "type": "ReactNode" }
+      ],
+      "a11y": ["main landmark for the content area", "sidebar collapses below lg — expose it as a Drawer"],
+      "snippet": "<AppShell sidebar={<Sidebar … />} topbar={<TopBar … />}>…</AppShell>"
+    },
+    {
+      "name": "EmptyState",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/EmptyState.tsx",
+      "summary": "Consistent empty state (icon, title, description, action).",
+      "props": [
+        { "name": "title", "type": "ReactNode", "required": true },
+        { "name": "description", "type": "ReactNode" },
+        { "name": "icon", "type": "ReactNode" },
+        { "name": "action", "type": "ReactNode" }
+      ],
+      "a11y": ["text-first; decorative icon is aria-hidden"],
+      "snippet": "<EmptyState title=\"No accounts yet\" description=\"Create your first account.\" action={<Button>New</Button>} />"
+    },
+    {
+      "name": "Grid",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/Grid.tsx",
+      "summary": "Responsive content grid — auto-fit by min item width, or fixed columns.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "minItemWidth", "type": "string" },
+        { "name": "columns", "type": "number" },
+        { "name": "gap", "type": "0|1|2|3|4|5|6|8", "default": "4" }
+      ],
+      "a11y": ["layout only — keep DOM order equal to reading order"],
+      "snippet": "<Grid minItemWidth=\"18rem\" gap={4}>{tiles}</Grid>"
+    },
+    {
+      "name": "PageHeader",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/PageHeader.tsx",
+      "summary": "Page title block owning the single <h1> of a screen, with description and actions.",
+      "props": [
+        { "name": "title", "type": "ReactNode", "required": true },
+        { "name": "description", "type": "ReactNode" },
+        { "name": "eyebrow", "type": "ReactNode" },
+        { "name": "actions", "type": "ReactNode" },
+        { "name": "above", "type": "ReactNode" }
+      ],
+      "a11y": ["renders the single <h1> for the screen"],
+      "snippet": "<PageHeader title=\"Accounts\" description=\"All customer accounts.\" actions={<Button>New</Button>} />"
+    },
+    {
+      "name": "Panel",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/Panel.tsx",
+      "summary": "Region container (bordered surface) used to compose layout regions.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "title", "type": "ReactNode" },
+        { "name": "padding", "type": "'none' | 'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "as", "type": "ElementType", "default": "'div'" }
+      ],
+      "a11y": ["use `title` for a named region heading"],
+      "snippet": "<Panel title=\"Recent activity\">…</Panel>"
+    },
+    {
+      "name": "PublicShell",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/PublicShell.tsx",
+      "summary": "Public/marketing shell: full-width header, centred content column, footer.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "header", "type": "ReactNode" },
+        { "name": "footer", "type": "ReactNode" }
+      ],
+      "a11y": ["main + footer landmarks", "content centred in a max-width column"],
+      "snippet": "<PublicShell header={<Nav />} footer={<Footer />}>…</PublicShell>"
+    },
+    {
+      "name": "Section",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/Section.tsx",
+      "summary": "Labelled page section with heading, description and actions.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "title", "type": "ReactNode" },
+        { "name": "description", "type": "ReactNode" },
+        { "name": "actions", "type": "ReactNode" },
+        { "name": "id", "type": "string" }
+      ],
+      "a11y": ["<section> with an <h2> heading (keeps the heading hierarchy)"],
+      "snippet": "<Section title=\"Highlights\" description=\"Selected work.\">{grid}</Section>"
+    },
+    {
+      "name": "Stack",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/Stack.tsx",
+      "summary": "Flex stack — the default arrangement inside a region.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "direction", "type": "'row' | 'column'", "default": "'column'" },
+        { "name": "gap", "type": "0|1|2|3|4|5|6|8", "default": "3" },
+        { "name": "align", "type": "'start' | 'center' | 'end' | 'stretch'", "default": "'stretch'" },
+        { "name": "justify", "type": "'start' | 'center' | 'end' | 'between'", "default": "'start'" },
+        { "name": "wrap", "type": "boolean", "default": "false" }
+      ],
+      "a11y": ["layout only — DOM order is reading order"],
+      "snippet": "<Stack direction=\"row\" gap={2} align=\"center\">{actions}</Stack>"
+    },
+    {
+      "name": "StatCard",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/StatCard.tsx",
+      "summary": "KPI tile for dashboards (label, value, hint, trend, icon).",
+      "props": [
+        { "name": "label", "type": "ReactNode", "required": true },
+        { "name": "value", "type": "ReactNode", "required": true },
+        { "name": "hint", "type": "ReactNode" },
+        { "name": "trend", "type": "{ value: ReactNode; direction?: 'up' | 'down' | 'flat' }" },
+        { "name": "icon", "type": "ReactNode" }
+      ],
+      "a11y": ["values are text; trend carries a direction label as well as colour"],
+      "snippet": "<StatCard label=\"Open orders\" value=\"12\" trend={{ value: '+3', direction: 'up' }} />"
+    },
+    {
+      "name": "Toolbar",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/Toolbar.tsx",
+      "summary": "Horizontal controls bar: filters/search left, actions right.",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "actions", "type": "ReactNode" }
+      ],
+      "a11y": ["role=\"toolbar\"; label the controls you place inside it"],
+      "snippet": "<Toolbar actions={<Button>New</Button>}><Input label=\"Search\" … /></Toolbar>"
+    },
+    {
+      "name": "TopNavShell",
+      "status": "available",
+      "category": "layout",
+      "source": "src/components/layout/TopNavShell.tsx",
+      "summary": "Shell for apps with horizontal navigation (no sidebar).",
+      "props": [
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "topbar", "type": "ReactNode" }
+      ],
+      "a11y": ["main landmark for the content area"],
+      "snippet": "<TopNavShell topbar={<TopBar … />}>…</TopNavShell>"
     }
   ],
   "api": [

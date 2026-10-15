@@ -1,0 +1,30 @@
+{
+  "id": "data-table",
+  "component": "DataTableLayout",
+  "preview": "DataTablePreview",
+  "name": "Data Table",
+  "summary": "List-first, filterable record layout for dense back-office work.",
+  "status": "available",
+  "shell": "app-shell-sidebar",
+  "suggestedAudiences": ["erp", "crm"],
+  "regions": [
+    { "id": "sidebar", "prop": "sidebar", "required": false },
+    { "id": "topbar", "prop": "topbar", "required": false },
+    { "id": "toolbar", "prop": "toolbar", "required": false },
+    { "id": "summary", "prop": "summary", "required": false },
+    { "id": "table", "prop": "children", "required": true },
+    { "id": "pagination", "prop": "pagination", "required": false }
+  ],
+  "requiredComponents": ["AppShell", "Sidebar", "TopBar", "Toolbar", "DataTable", "Pagination", "Panel", "Section", "PageHeader"],
+  "requiredFeatures": ["inventory", "procurement"],
+  "breakpoints": {
+    "lg": "full table with all columns",
+    "md": "table scrolls horizontally; toolbar wraps",
+    "sm": "single column; table scrolls"
+  },
+  "a11y": [
+    "DataTable caption for screen readers",
+    "toolbar controls labelled (search/filters)",
+    "single <h1> per screen (PageHeader)"
+  ]
+}

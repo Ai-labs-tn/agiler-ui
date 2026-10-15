@@ -1,6 +1,6 @@
 {
   "name": "@agiler/ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "AGILER design system — deterministic UI primitives + design tokens shipped to every generated order project (write once, ship to many).",
   "type": "module",
   "license": "UNLICENSED",

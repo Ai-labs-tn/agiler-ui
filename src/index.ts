@@ -59,6 +59,59 @@ export { TopBar, type TopBarProps } from './components/navigation/TopBar';
 export { DataTable, type Column, type DataTableProps } from './components/tables/DataTable';
 export { Pagination, type PaginationProps } from './components/tables/Pagination';
 
+// Composition primitives (layout building blocks)
+export {
+  AppShell,
+  EmptyState,
+  Grid,
+  PageHeader,
+  Panel,
+  PublicShell,
+  Section,
+  Stack,
+  StatCard,
+  Toolbar,
+  TopNavShell,
+  type AppShellProps,
+  type EmptyStateProps,
+  type GridProps,
+  type PageHeaderProps,
+  type PanelProps,
+  type PublicShellProps,
+  type SectionProps,
+  type StackProps,
+  type StatCardProps,
+  type ToolbarProps,
+  type TopNavShellProps,
+} from './components/layout';
+
+// Layout archetypes (page skeletons an order picks — see v3.1 plan §3.2)
+export {
+  AsymmetricalLayout,
+  AsymmetricalPreview,
+  BentoGridLayout,
+  BentoGridPreview,
+  CardDashboardLayout,
+  CardDashboardPreview,
+  ColumnarGridDashboardLayout,
+  ColumnarGridDashboardPreview,
+  DataTableLayout,
+  DataTablePreview,
+  KanbanBoardLayout,
+  KanbanBoardPreview,
+  SplitScreenLayout,
+  SplitScreenPreview,
+  type AsymmetricalLayoutProps,
+  type BentoGridLayoutProps,
+  type BoardLane,
+  type CardDashboardLayoutProps,
+  type ColumnarGridDashboardLayoutProps,
+  type DashboardStat,
+  type DataTableLayoutProps,
+  type KanbanBoardLayoutProps,
+  type SplitScreenLayoutProps,
+} from './layouts';
+
 // Theme + theming contract (non-component API)
 export { ThemeProvider, type ThemeProviderProps } from './theme/ThemeProvider';
 export { useTheme } from './theme/useTheme';
