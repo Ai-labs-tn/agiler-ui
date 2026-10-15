@@ -47,8 +47,28 @@ export { Modal, type ModalProps, type ModalSize } from './components/modals/Moda
 // Navigation
 export { Breadcrumbs, type BreadcrumbsProps, type Crumb } from './components/navigation/Breadcrumbs';
 export { Sidebar, type NavItem, type SidebarProps } from './components/navigation/Sidebar';
+export { ThemeToggle } from './components/navigation/ThemeToggle';
 export { TopBar, type TopBarProps } from './components/navigation/TopBar';
 
 // Tables
 export { DataTable, type DataTableProps } from './components/tables/DataTable';
 export { Pagination, type PaginationProps } from './components/tables/Pagination';
+
+// Theme + theming contract (non-component API)
+export { ThemeProvider, type ThemeProviderProps } from './theme/ThemeProvider';
+export { useTheme } from './theme/useTheme';
+export { applyTheme, themeStyle } from './theme/theme';
+export {
+  breakpoints,
+  cssVar,
+  durations,
+  mediaQueryFrom,
+  zIndex,
+  type Breakpoint,
+} from './theme/tokens';
+export type {
+  ResolvedTheme,
+  ThemeContextValue,
+  ThemeDefinition,
+  ThemePreference,
+} from './theme/types';

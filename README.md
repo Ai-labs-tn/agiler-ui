@@ -82,12 +82,21 @@ npm run manifest:check  # CI gate: manifest is committed and in sync
 
 ## Publish (Phase 12a.6)
 
+Tag a release → `.github/workflows/release.yml` runs the manifest check, typecheck, build and
+`npm publish` to GitHub Packages. Locally:
+
 ```bash
 npm install
-npm run build          # tsup → dist/ (+ d.ts)
-npm publish            # GitHub Packages (@agiler scope; see .npmrc.example)
-git tag v0.1.0 && git push --tags
+npm run manifest:check   # catalog ↔ exports ↔ manifest must agree
+npm run typecheck
+npm run build            # tsup → dist/ (+ d.ts + hashed CSS)
+npm pack --dry-run       # inspect the tarball before publishing
+
+npm version patch        # bumps package.json + tags (see CHANGELOG.md)
+git push --follow-tags
 ```
+
+Consumers need a token with `read:packages` (`.npmrc.example`).
 
 ⚠️ **Private package + Render builds:** order repos deployed on Render must resolve this package, so
 the generated `render.yaml` carries an `NPM_TOKEN` **build secret** (or the package is made public).

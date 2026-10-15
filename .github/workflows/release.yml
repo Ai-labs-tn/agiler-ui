@@ -1,0 +1,35 @@
+name: release
+
+# Publish `@agiler/ui` to GitHub Packages when a version tag is pushed:
+#   npm version patch|minor|major   # bumps package.json + creates the commit/tag
+#   git push --follow-tags
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: '@agiler'
+      - name: Manifest + catalog/export drift check
+        run: node scripts/check-manifest.mjs
+      - name: Install
+        run: npm install --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

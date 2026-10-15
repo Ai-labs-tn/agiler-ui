@@ -51,15 +51,24 @@ export function buildManifest() {
   }
 
   const exports = publicExports();
+  const api = catalog.api ?? [];
+  const apiNames = new Set(api.map((entry) => entry.name));
   const availableNames = new Set(available.map((component) => component.name));
   for (const name of exports) {
-    if (!availableNames.has(name)) {
-      problems.push(`"${name}" is exported from src/index.ts but not catalogued as available`);
+    if (!availableNames.has(name) && !apiNames.has(name)) {
+      problems.push(
+        `"${name}" is exported from src/index.ts but is neither an available component nor in the catalog "api" list`,
+      );
     }
   }
   for (const name of availableNames) {
     if (!exports.includes(name)) {
       problems.push(`"${name}" is catalogued as available but not exported from src/index.ts`);
+    }
+  }
+  for (const name of apiNames) {
+    if (!exports.includes(name)) {
+      problems.push(`"${name}" is listed in the catalog "api" list but not exported from src/index.ts`);
     }
   }
 
@@ -71,9 +80,15 @@ export function buildManifest() {
     themes: catalog.themes,
     tokensFile: catalog.tokensFile,
     themesFile: catalog.themesFile,
-    counts: { available: available.length, planned: planned.length, total: components.length },
+    counts: {
+      available: available.length,
+      planned: planned.length,
+      api: api.length,
+      total: components.length,
+    },
     rules: catalog.rules,
     components,
+    api,
   };
 
   return { manifest, problems };

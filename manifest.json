@@ -1,7 +1,7 @@
 {
   "name": "@agiler/ui",
   "version": "0.1.0",
-  "generatedAt": "2026-10-15T01:49:34.217Z",
+  "generatedAt": "2026-10-15T01:54:12.792Z",
   "themeAttribute": "data-theme",
   "themes": [
     "light",
@@ -11,8 +11,9 @@
   "tokensFile": "src/styles/tokens.css",
   "themesFile": "src/styles/themes.css",
   "counts": {
-    "available": 30,
-    "planned": 1,
+    "available": 31,
+    "planned": 0,
+    "api": 9,
     "total": 31
   },
   "rules": [
@@ -992,9 +993,15 @@
     },
     {
       "name": "ThemeToggle",
-      "status": "planned",
+      "status": "available",
       "category": "navigation",
-      "summary": "Light/dark/system theme switch — lands with the theming contract (theme.json → CSS variables, 12a.5)."
+      "source": "src/components/navigation/ThemeToggle.tsx",
+      "summary": "Light/dark/system theme switch (requires a ThemeProvider ancestor).",
+      "props": [],
+      "a11y": [
+        "role=\"radiogroup\" with labelled radio options (icons carry visually-hidden names)."
+      ],
+      "snippet": "<ThemeToggle />"
     },
     {
       "name": "Toast",
@@ -1126,6 +1133,53 @@
         "header landmark; the menu trigger is a labelled IconButton."
       ],
       "snippet": "<TopBar title=\"Orders\" onMenuClick={openMenu} actions={<Button>New order</Button>} />"
+    }
+  ],
+  "api": [
+    {
+      "name": "ThemeProvider",
+      "category": "theme",
+      "summary": "Applies light/dark/system + per-order theme.json token overrides to <html>."
+    },
+    {
+      "name": "useTheme",
+      "category": "theme",
+      "summary": "Read/set the theme preference (must be inside a ThemeProvider)."
+    },
+    {
+      "name": "applyTheme",
+      "category": "theme",
+      "summary": "Apply a theme.json (data-theme + CSS-variable overrides) to an element."
+    },
+    {
+      "name": "themeStyle",
+      "category": "theme",
+      "summary": "Compute the inline style object for a theme definition."
+    },
+    {
+      "name": "breakpoints",
+      "category": "theme",
+      "summary": "Typed pixel breakpoints mirrored from tokens.css."
+    },
+    {
+      "name": "mediaQueryFrom",
+      "category": "theme",
+      "summary": "Build a mobile-first min-width media query string."
+    },
+    {
+      "name": "cssVar",
+      "category": "theme",
+      "summary": "Reference a CSS custom property by name."
+    },
+    {
+      "name": "durations",
+      "category": "theme",
+      "summary": "Typed motion durations."
+    },
+    {
+      "name": "zIndex",
+      "category": "theme",
+      "summary": "Typed z-index scale."
     }
   ]
 }
