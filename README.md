@@ -40,13 +40,13 @@ only use `available` components.
 
 ## Consume it
 
-Current shape (**v0.x, source-shipped**) — pick one while the registry build lands:
+`npm run build` first (produces `dist/` with `index.js` + `index.d.ts` + hashed CSS), then:
 
 ```jsonc
 // a) exact git tag (private, deterministic, zero registry infra)
 "@agiler/ui": "github:Ai-labs-tn/agiler-ui#v0.1.0"
 
-// b) local workspace/link during development
+// b) local path during development (run `npm run build` in this repo first)
 "@agiler/ui": "file:../agiler-ui"
 ```
 
@@ -95,9 +95,9 @@ Decided in the v3.1 plan §3.1.
 
 ## Roadmap
 
-- [x] Package skeleton, tokens + themes, manifest tooling, first primitives (Button/Card/Badge/Spinner)
-- [ ] Extract the remaining primitives (forms, modals, navigation, tables, loaders, feedback) — 12a.3
-- [ ] Theming contract hook (`theme.json` → CSS variables) — 12a.5
+- [x] Package skeleton, tokens + themes, manifest tooling
+- [x] **All primitives extracted** (buttons, cards, feedback, forms, loaders, modals, navigation, tables) — typechecked + built
+- [ ] Theming contract hook (`theme.json` → CSS variables) + `ThemeToggle` — 12a.5
 - [ ] Publish pipeline + first tagged release — 12a.6
 - [ ] AGILER itself consumes `@agiler/ui` — 12a.7
 - [ ] Screen-spec schema + validator in the AAOS backend — Phase 13.2

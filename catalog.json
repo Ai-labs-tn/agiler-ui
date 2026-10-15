@@ -8,9 +8,55 @@
   "rules": [
     "Compose screens only from components declared here; never write raw CSS, hex colours or inline styles.",
     "Use the tokens in tokens.css (or a per-order theme.json override) for every visual value.",
-    "Pin an exact @agiler/ui version per order; structure is identical everywhere, brand comes from theme tokens."
+    "Pin an exact @agiler/ui version per order; structure is identical everywhere, brand comes from theme tokens.",
+    "Forms must be labelled; icon-only controls must carry an aria-label."
   ],
   "components": [
+    {
+      "name": "Alert",
+      "status": "available",
+      "category": "feedback",
+      "source": "src/components/feedback/Alert.tsx",
+      "summary": "Inline message with an icon, optional title and dismiss action.",
+      "props": [
+        { "name": "variant", "type": "'info' | 'success' | 'warning' | 'danger'", "default": "'info'" },
+        { "name": "title", "type": "string" },
+        { "name": "children", "type": "ReactNode" },
+        { "name": "onClose", "type": "() => void" }
+      ],
+      "a11y": [
+        "warning/danger use role=\"alert\"; info/success use role=\"status\".",
+        "The dismiss action is an aria-labelled IconButton."
+      ],
+      "snippet": "<Alert variant=\"warning\" title=\"Over budget\">The quote exceeds the budget.</Alert>"
+    },
+    {
+      "name": "Badge",
+      "status": "available",
+      "category": "feedback",
+      "source": "src/components/feedback/Badge.tsx",
+      "summary": "Compact status/label chip with semantic variants.",
+      "props": [
+        { "name": "children", "type": "ReactNode" },
+        { "name": "variant", "type": "'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info'", "default": "'neutral'" },
+        { "name": "size", "type": "'sm' | 'md'", "default": "'md'" }
+      ],
+      "a11y": ["Presentational; pair with text that carries the meaning."],
+      "snippet": "<Badge variant=\"success\" size=\"sm\">Delivered</Badge>"
+    },
+    {
+      "name": "Breadcrumbs",
+      "status": "available",
+      "category": "navigation",
+      "source": "src/components/navigation/Breadcrumbs.tsx",
+      "summary": "Hierarchical location trail; router-agnostic via linkComponent.",
+      "props": [
+        { "name": "items", "type": "Crumb[]", "required": true },
+        { "name": "linkComponent", "type": "ElementType", "default": "'a'" }
+      ],
+      "a11y": ["nav[aria-label=\"Breadcrumb\"]; the last crumb carries aria-current=\"page\"."],
+      "snippet": "<Breadcrumbs items={[{ label: 'Orders', to: '/orders' }, { label: project.title }]} />"
+    },
     {
       "name": "Button",
       "status": "available",
@@ -39,7 +85,7 @@
       "source": "src/components/cards/Card.tsx",
       "summary": "Surface container with optional header/footer and padding scale.",
       "props": [
-        { "name": "children", "type": "ReactNode" },
+        { "name": "children", "type": "ReactNode", "required": true },
         { "name": "header", "type": "ReactNode" },
         { "name": "footer", "type": "ReactNode" },
         { "name": "padding", "type": "'none' | 'sm' | 'md' | 'lg'", "default": "'md'" },
@@ -50,18 +96,322 @@
       "snippet": "<Card header={<h2>Accounts</h2>} padding=\"md\">…</Card>"
     },
     {
-      "name": "Badge",
+      "name": "Checkbox",
       "status": "available",
-      "category": "feedback",
-      "source": "src/components/feedback/Badge.tsx",
-      "summary": "Compact status/label chip with semantic variants.",
+      "category": "forms",
+      "source": "src/components/forms/Checkbox.tsx",
+      "summary": "Labelled checkbox with error and helper text.",
       "props": [
-        { "name": "children", "type": "ReactNode" },
-        { "name": "variant", "type": "'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info'", "default": "'neutral'" },
-        { "name": "size", "type": "'sm' | 'md'", "default": "'md'" }
+        { "name": "label", "type": "ReactNode", "required": true },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" }
       ],
-      "a11y": ["Purely presentational; pair with text that carries the meaning."],
-      "snippet": "<Badge variant=\"success\" size=\"sm\">Delivered</Badge>"
+      "a11y": ["Label wraps the input; error sets aria-invalid and is linked via aria-describedby."],
+      "snippet": "<Checkbox label=\"Run with AI agents\" checked={on} onChange={…} />"
+    },
+    {
+      "name": "DataTable",
+      "status": "available",
+      "category": "tables",
+      "source": "src/components/tables/DataTable.tsx",
+      "summary": "Table with sorting, search, paging, CSV export, row actions and an empty state.",
+      "props": [
+        { "name": "columns", "type": "Column<T>[]", "required": true },
+        { "name": "data", "type": "T[]", "required": true },
+        { "name": "getRowId", "type": "(row: T) => string", "required": true },
+        { "name": "isLoading", "type": "boolean" },
+        { "name": "caption", "type": "string" },
+        { "name": "emptyTitle", "type": "string" },
+        { "name": "emptyDescription", "type": "string" },
+        { "name": "emptyAction", "type": "ReactNode" },
+        { "name": "searchable", "type": "boolean" },
+        { "name": "searchPlaceholder", "type": "string" },
+        { "name": "pageSize", "type": "number" },
+        { "name": "pageSizeOptions", "type": "number[]" },
+        { "name": "exportFileName", "type": "string" },
+        { "name": "toolbar", "type": "ReactNode" },
+        { "name": "rowActions", "type": "(row: T) => ReactNode" },
+        { "name": "onRowClick", "type": "(row: T) => void" }
+      ],
+      "a11y": [
+        "Provide `caption` for screen readers.",
+        "Shows a Skeleton while loading and a labelled empty state when there are no rows."
+      ],
+      "snippet": "<DataTable columns={columns} data={rows} getRowId={(r) => r.id} caption=\"Accounts\" searchable pageSize={10} />"
+    },
+    {
+      "name": "DatePicker",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/DatePicker.tsx",
+      "summary": "Labelled date/time input (date, datetime-local, time or month).",
+      "props": [
+        { "name": "label", "type": "string" },
+        { "name": "mode", "type": "'date' | 'datetime-local' | 'time' | 'month'", "default": "'date'" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Labelled; error linked via aria-describedby."],
+      "snippet": "<DatePicker label=\"Start date\" mode=\"date\" value={start} onChange={…} />"
+    },
+    {
+      "name": "Drawer",
+      "status": "available",
+      "category": "modals",
+      "source": "src/components/modals/Drawer.tsx",
+      "summary": "Edge-anchored panel for detail views and mobile navigation.",
+      "props": [
+        { "name": "isOpen", "type": "boolean", "required": true },
+        { "name": "onClose", "type": "() => void", "required": true },
+        { "name": "title", "type": "ReactNode" },
+        { "name": "side", "type": "'left' | 'right'", "default": "'right'" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "children", "type": "ReactNode" },
+        { "name": "footer", "type": "ReactNode" },
+        { "name": "closeOnOverlayClick", "type": "boolean" },
+        { "name": "closeOnEsc", "type": "boolean" }
+      ],
+      "a11y": ["Portalled dialog with a focus trap, Esc-to-close and background scroll lock."],
+      "snippet": "<Drawer isOpen={open} onClose={close} title=\"Filters\">…</Drawer>"
+    },
+    {
+      "name": "FieldLabel",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/FieldLabel.tsx",
+      "summary": "Form label primitive (used by every field component).",
+      "props": [
+        { "name": "htmlFor", "type": "string", "required": true },
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Renders <label htmlFor>; marks required fields."],
+      "snippet": "<FieldLabel htmlFor=\"email\" isRequired>Email</FieldLabel>"
+    },
+    {
+      "name": "FieldMessage",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/FieldMessage.tsx",
+      "summary": "Error / helper text primitive wired to field a11y ids.",
+      "props": [
+        { "name": "ids", "type": "FieldA11yIds", "required": true },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" }
+      ],
+      "a11y": ["Rendered with the ids referenced by aria-describedby."],
+      "snippet": "<FieldMessage ids={ids} error=\"Required\" />"
+    },
+    {
+      "name": "FileUpload",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/FileUpload.tsx",
+      "summary": "Drag-and-drop / browse file input with size guard.",
+      "props": [
+        { "name": "onFilesChange", "type": "(files: File[]) => void", "required": true },
+        { "name": "label", "type": "string" },
+        { "name": "accept", "type": "string" },
+        { "name": "maxSizeMb", "type": "number" },
+        { "name": "multiple", "type": "boolean" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Labelled; exposes the browse action as a Button."],
+      "snippet": "<FileUpload label=\"Attachments\" multiple onFilesChange={setFiles} />"
+    },
+    {
+      "name": "IconButton",
+      "status": "available",
+      "category": "buttons",
+      "source": "src/components/buttons/IconButton.tsx",
+      "summary": "Square icon-only button — an accessible name is required by the type.",
+      "props": [
+        { "name": "aria-label", "type": "string", "required": true },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "variant", "type": "'ghost' | 'solid' | 'outline'", "default": "'ghost'" }
+      ],
+      "a11y": ["`aria-label` is a required prop so icon-only controls are always announced."],
+      "snippet": "<IconButton aria-label=\"Close\" onClick={close}>✕</IconButton>"
+    },
+    {
+      "name": "Input",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/Input.tsx",
+      "summary": "Labelled text input with optional addons, error and helper text.",
+      "props": [
+        { "name": "label", "type": "string" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "leftAddon", "type": "ReactNode" },
+        { "name": "rightAddon", "type": "ReactNode" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["label + aria-describedby (error/helper) + aria-invalid on error."],
+      "snippet": "<Input label=\"Email\" type=\"email\" isRequired value={email} onChange={…} />"
+    },
+    {
+      "name": "Loader",
+      "status": "available",
+      "category": "loaders",
+      "source": "src/components/loaders/Loader.tsx",
+      "summary": "Centered loading state with a label; can fill the viewport.",
+      "props": [
+        { "name": "label", "type": "string" },
+        { "name": "fullScreen", "type": "boolean", "default": "false" },
+        { "name": "className", "type": "string" }
+      ],
+      "a11y": ["Wraps Spinner, which announces its label via role=\"status\"."],
+      "snippet": "<Loader fullScreen label=\"Loading your workspace…\" />"
+    },
+    {
+      "name": "Modal",
+      "status": "available",
+      "category": "modals",
+      "source": "src/components/modals/Modal.tsx",
+      "summary": "Centered dialog with overlay, focus trap and footer slot.",
+      "props": [
+        { "name": "isOpen", "type": "boolean", "required": true },
+        { "name": "onClose", "type": "() => void", "required": true },
+        { "name": "title", "type": "ReactNode" },
+        { "name": "description", "type": "ReactNode" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg' | 'xl'", "default": "'md'" },
+        { "name": "children", "type": "ReactNode" },
+        { "name": "footer", "type": "ReactNode" },
+        { "name": "closeOnOverlayClick", "type": "boolean" },
+        { "name": "closeOnEsc", "type": "boolean" },
+        { "name": "showCloseButton", "type": "boolean" },
+        { "name": "ariaLabel", "type": "string" }
+      ],
+      "a11y": [
+        "Portalled dialog with a focus trap, Esc-to-close and background scroll lock.",
+        "Pass `ariaLabel` when there is no visible title."
+      ],
+      "snippet": "<Modal isOpen={open} onClose={close} title=\"Place an order\" footer={<Button>Save</Button>}>…</Modal>"
+    },
+    {
+      "name": "MultiSelect",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/MultiSelect.tsx",
+      "summary": "Multi-value dropdown that renders selected values as chips.",
+      "props": [
+        { "name": "options", "type": "SelectOption[]", "required": true },
+        { "name": "value", "type": "string[]", "required": true },
+        { "name": "onChange", "type": "(value: string[]) => void", "required": true },
+        { "name": "label", "type": "string" },
+        { "name": "placeholder", "type": "string" },
+        { "name": "maxDisplay", "type": "number" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Labelled combobox; collapses extra chips into a “+N more” indicator."],
+      "snippet": "<MultiSelect label=\"Tags\" options={options} value={tags} onChange={setTags} />"
+    },
+    {
+      "name": "Pagination",
+      "status": "available",
+      "category": "tables",
+      "source": "src/components/tables/Pagination.tsx",
+      "summary": "Page navigation with optional page-size selector.",
+      "props": [
+        { "name": "page", "type": "number", "required": true },
+        { "name": "pageSize", "type": "number", "required": true },
+        { "name": "totalItems", "type": "number", "required": true },
+        { "name": "onPageChange", "type": "(page: number) => void", "required": true },
+        { "name": "onPageSizeChange", "type": "(pageSize: number) => void" },
+        { "name": "pageSizeOptions", "type": "number[]" }
+      ],
+      "a11y": ["Buttons carry accessible names; state is exposed via aria-current on the page."],
+      "snippet": "<Pagination page={page} pageSize={10} totalItems={42} onPageChange={setPage} />"
+    },
+    {
+      "name": "Radio",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/Radio.tsx",
+      "summary": "Labelled radio control (usually composed by RadioGroup).",
+      "props": [{ "name": "label", "type": "string", "required": true }],
+      "a11y": ["Label wraps the input."],
+      "snippet": "<Radio name=\"plan\" label=\"Monthly\" value=\"monthly\" />"
+    },
+    {
+      "name": "RadioGroup",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/RadioGroup.tsx",
+      "summary": "Grouped radio options with a shared legend, error and helper text.",
+      "props": [
+        { "name": "name", "type": "string", "required": true },
+        { "name": "legend", "type": "string", "required": true },
+        { "name": "options", "type": "RadioOption[]", "required": true },
+        { "name": "value", "type": "string" },
+        { "name": "defaultValue", "type": "string" },
+        { "name": "onChange", "type": "(value: string) => void" },
+        { "name": "orientation", "type": "'vertical' | 'horizontal'", "default": "'vertical'" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" }
+      ],
+      "a11y": ["fieldset + legend grouping semantics."],
+      "snippet": "<RadioGroup name=\"plan\" legend=\"Plan\" options={plans} value={plan} onChange={setPlan} />"
+    },
+    {
+      "name": "Select",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/Select.tsx",
+      "summary": "Labelled dropdown with an option list and optional placeholder.",
+      "props": [
+        { "name": "options", "type": "SelectOption[]", "required": true },
+        { "name": "label", "type": "string" },
+        { "name": "placeholder", "type": "string" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Labelled; aria-required / aria-invalid wired via useFieldA11y."],
+      "snippet": "<Select label=\"Product type\" options={PRODUCT_TYPES} value={type} onChange={…} />"
+    },
+    {
+      "name": "Sidebar",
+      "status": "available",
+      "category": "navigation",
+      "source": "src/components/navigation/Sidebar.tsx",
+      "summary": "Primary navigation with optional groups, collapse and a footer slot; router-agnostic.",
+      "props": [
+        { "name": "brand", "type": "ReactNode", "required": true },
+        { "name": "items", "type": "NavItem[]", "required": true },
+        { "name": "collapsed", "type": "boolean", "default": "false" },
+        { "name": "footer", "type": "ReactNode" },
+        { "name": "onNavigate", "type": "() => void" },
+        { "name": "activePath", "type": "string" },
+        { "name": "linkComponent", "type": "ElementType", "default": "'a'" }
+      ],
+      "a11y": ["nav[aria-label=\"Primary\"]; collapsed items keep a title for the accessible name."],
+      "snippet": "<Sidebar brand={<Brand />} items={navItems} activePath={pathname} linkComponent={NavLink} />"
+    },
+    {
+      "name": "Skeleton",
+      "status": "available",
+      "category": "loaders",
+      "source": "src/components/loaders/Skeleton.tsx",
+      "summary": "Content placeholder shape; can render multiple stacked lines.",
+      "props": [
+        { "name": "width", "type": "string" },
+        { "name": "height", "type": "string" },
+        { "name": "radius", "type": "'sm' | 'md' | 'lg' | 'full'" },
+        { "name": "lines", "type": "number" }
+      ],
+      "a11y": ["Decorative — pair with an aria-busy/loading region."],
+      "snippet": "<Skeleton lines={3} />"
     },
     {
       "name": "Spinner",
@@ -77,160 +427,96 @@
       "snippet": "<Spinner size=\"sm\" label=\"Loading accounts\" />"
     },
     {
-      "name": "IconButton",
-      "status": "planned",
-      "category": "buttons",
-      "summary": "Square icon-only button; requires an aria-label."
-    },
-    {
-      "name": "Alert",
-      "status": "planned",
-      "category": "feedback",
-      "summary": "Inline message with title, body and semantic variant."
+      "name": "TextArea",
+      "status": "available",
+      "category": "forms",
+      "source": "src/components/forms/TextArea.tsx",
+      "summary": "Labelled multi-line text input with optional character counter.",
+      "props": [
+        { "name": "label", "type": "string" },
+        { "name": "showCount", "type": "boolean" },
+        { "name": "maxLength", "type": "number" },
+        { "name": "error", "type": "string" },
+        { "name": "helperText", "type": "string" },
+        { "name": "isRequired", "type": "boolean" }
+      ],
+      "a11y": ["Labelled; error/helper linked via aria-describedby."],
+      "snippet": "<TextArea label=\"Spec\" rows={4} maxLength={2000} showCount value={spec} onChange={…} />"
     },
     {
       "name": "Toast",
-      "status": "planned",
+      "status": "available",
       "category": "feedback",
-      "summary": "Transient notification surfaced via a viewport/provider."
+      "source": "src/components/feedback/Toast.tsx",
+      "summary": "Single notification card (normally rendered by ToastViewport).",
+      "props": [
+        { "name": "toast", "type": "ToastModel", "required": true },
+        { "name": "onDismiss", "type": "(id: string) => void", "required": true }
+      ],
+      "a11y": ["error/warning use role=\"alert\"; others role=\"status\"; the close button is labelled."],
+      "snippet": "<Toast toast={toast} onDismiss={dismiss} />"
     },
     {
-      "name": "Tooltip",
-      "status": "planned",
+      "name": "ToastViewport",
+      "status": "available",
       "category": "feedback",
-      "summary": "Hover/focus hint anchored to a trigger."
-    },
-    {
-      "name": "Input",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Labelled text input with error and helper text."
-    },
-    {
-      "name": "TextArea",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Labelled multi-line text input with optional character counter."
-    },
-    {
-      "name": "Select",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Labelled dropdown with option list."
-    },
-    {
-      "name": "Checkbox",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Labelled checkbox control."
+      "source": "src/components/feedback/ToastViewport.tsx",
+      "summary": "Stacked, screen-reader-announced notification region.",
+      "props": [
+        { "name": "toasts", "type": "ToastModel[]", "required": true },
+        { "name": "onDismiss", "type": "(id: string) => void", "required": true }
+      ],
+      "a11y": ["region[aria-label=\"Notifications\"]; each toast announces itself."],
+      "snippet": "<ToastViewport toasts={toasts} onDismiss={dismiss} />"
     },
     {
       "name": "Toggle",
-      "status": "planned",
+      "status": "available",
       "category": "forms",
-      "summary": "Accessible switch (role=\"switch\")."
+      "source": "src/components/forms/Toggle.tsx",
+      "summary": "Accessible switch built on a native button.",
+      "props": [
+        { "name": "checked", "type": "boolean", "required": true },
+        { "name": "onCheckedChange", "type": "(checked: boolean) => void", "required": true },
+        { "name": "label", "type": "string" },
+        { "name": "size", "type": "'sm' | 'md'", "default": "'md'" }
+      ],
+      "a11y": ["role=\"switch\" + aria-checked; `label` supplies the accessible name."],
+      "snippet": "<Toggle checked={on} onCheckedChange={setOn} label=\"Human-in-the-loop\" />"
     },
     {
-      "name": "Radio",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Labelled radio control."
-    },
-    {
-      "name": "RadioGroup",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Grouped radio options with a shared label."
-    },
-    {
-      "name": "MultiSelect",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Multi-value dropdown."
-    },
-    {
-      "name": "DatePicker",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Date selection control."
-    },
-    {
-      "name": "FileUpload",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Drag-and-drop / browse file input."
-    },
-    {
-      "name": "FieldLabel",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Form field label primitive."
-    },
-    {
-      "name": "FieldMessage",
-      "status": "planned",
-      "category": "forms",
-      "summary": "Form field error/helper message primitive."
-    },
-    {
-      "name": "Modal",
-      "status": "planned",
-      "category": "modals",
-      "summary": "Centered dialog with overlay, focus trap and footer slot."
-    },
-    {
-      "name": "Drawer",
-      "status": "planned",
-      "category": "modals",
-      "summary": "Edge-anchored panel for detail views and mobile navigation."
+      "name": "Tooltip",
+      "status": "available",
+      "category": "feedback",
+      "source": "src/components/feedback/Tooltip.tsx",
+      "summary": "Hover/focus hint anchored to a trigger.",
+      "props": [
+        { "name": "content", "type": "ReactNode", "required": true },
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "position", "type": "'top' | 'bottom' | 'left' | 'right'", "default": "'top'" }
+      ],
+      "a11y": ["Shown on hover and focus; keep the content short and non-interactive."],
+      "snippet": "<Tooltip content=\"Quoted within budget\"><Badge>Within budget</Badge></Tooltip>"
     },
     {
       "name": "TopBar",
-      "status": "planned",
+      "status": "available",
       "category": "navigation",
-      "summary": "Application header with title and action slots."
-    },
-    {
-      "name": "Sidebar",
-      "status": "planned",
-      "category": "navigation",
-      "summary": "Primary navigation with groups and collapse."
-    },
-    {
-      "name": "Breadcrumbs",
-      "status": "planned",
-      "category": "navigation",
-      "summary": "Hierarchical location trail."
+      "source": "src/components/navigation/TopBar.tsx",
+      "summary": "Application header with a title, action slot and optional menu button.",
+      "props": [
+        { "name": "title", "type": "ReactNode" },
+        { "name": "onMenuClick", "type": "() => void" },
+        { "name": "actions", "type": "ReactNode" }
+      ],
+      "a11y": ["header landmark; the menu trigger is a labelled IconButton."],
+      "snippet": "<TopBar title=\"Orders\" onMenuClick={openMenu} actions={<Button>New order</Button>} />"
     },
     {
       "name": "ThemeToggle",
       "status": "planned",
       "category": "navigation",
-      "summary": "Light/dark/system theme switch."
-    },
-    {
-      "name": "DataTable",
-      "status": "planned",
-      "category": "tables",
-      "summary": "Table with sorting, search, paging, export and empty state."
-    },
-    {
-      "name": "Pagination",
-      "status": "planned",
-      "category": "tables",
-      "summary": "Page navigation control."
-    },
-    {
-      "name": "Loader",
-      "status": "planned",
-      "category": "loaders",
-      "summary": "Full-area loading state with label."
-    },
-    {
-      "name": "Skeleton",
-      "status": "planned",
-      "category": "loaders",
-      "summary": "Content placeholder shape."
+      "summary": "Light/dark/system theme switch — lands with the theming contract (theme.json → CSS variables, 12a.5)."
     }
   ]
 }

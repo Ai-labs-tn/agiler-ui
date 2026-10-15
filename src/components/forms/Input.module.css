@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+}
+
+.addon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  pointer-events: none;
+}
+
+.hasLeft .addon:first-child {
+  left: var(--space-3);
+}
+
+.hasRight .addon:last-child {
+  right: var(--space-3);
+}
+
+.padLeft {
+  padding-left: var(--space-8);
+}
+
+.padRight {
+  padding-right: var(--space-8);
+}

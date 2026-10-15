@@ -1,0 +1,13 @@
+.input {
+  cursor: pointer;
+}
+
+/* Normalize the native indicator color for dark mode. */
+.input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
