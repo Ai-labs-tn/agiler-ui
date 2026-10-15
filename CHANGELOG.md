@@ -5,6 +5,14 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.3.1] — 2026-10-15
+
+### Fixed
+
+- `AuthScreen` now takes a dedicated **`onRequestResetCode`** callback for the reset flow (falling
+  back to `onRequestCode`). The sign-in code and the reset code are different endpoints, so reusing
+  the OTP callback made the reset unable to verify its code.
+
 ## [0.3.0] — 2026-10-15
 
 ### Added

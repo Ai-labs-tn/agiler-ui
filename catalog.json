@@ -51,6 +51,7 @@
         { "name": "onVerifyCode", "type": "(code: string) => void | Promise<void>", "required": true },
         { "name": "onPasswordSignIn", "type": "(email: string, password: string) => void | Promise<void>", "required": true },
         { "name": "onResetPassword", "type": "(email: string, code: string, newPassword: string) => void | Promise<void>", "required": true },
+        { "name": "onRequestResetCode", "type": "(email: string) => void | Promise<void>" },
         { "name": "onCancelReset", "type": "() => void" },
         { "name": "minPasswordLength", "type": "number", "default": "8" }
       ],

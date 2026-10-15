@@ -23,6 +23,8 @@ export interface AuthScreenProps {
   onVerifyCode: (code: string) => Promise<void> | void;
   onPasswordSignIn: (email: string, password: string) => Promise<void> | void;
   onResetPassword: (email: string, code: string, newPassword: string) => Promise<void> | void;
+  /** Send the *reset* code (a different endpoint than the sign-in code). Falls back to onRequestCode. */
+  onRequestResetCode?: (email: string) => Promise<void> | void;
   onCancelReset?: () => void;
   minPasswordLength?: number;
 }
@@ -49,6 +51,7 @@ export function AuthScreen({
   onVerifyCode,
   onPasswordSignIn,
   onResetPassword,
+  onRequestResetCode,
   onCancelReset,
   minPasswordLength,
 }: AuthScreenProps) {
@@ -59,7 +62,7 @@ export function AuthScreen({
     return (
       <AuthShell title="Reset password" subtitle="We will send a reset code." brand={brand} footer={footer}>
         <PasswordReset
-          onRequestCode={onRequestCode}
+          onRequestCode={onRequestResetCode ?? onRequestCode}
           onReset={onResetPassword}
           onCancel={() => {
             onCancelReset?.();
