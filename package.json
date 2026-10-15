@@ -40,7 +40,8 @@
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "manifest": "node scripts/generate-manifest.mjs",
-    "manifest:check": "node scripts/check-manifest.mjs"
+    "manifest:check": "node scripts/check-manifest.mjs",
+    "prepare": "npm run build"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",

@@ -40,22 +40,22 @@ only use `available` components.
 
 ## Consume it
 
-`npm run build` first (produces `dist/` with `index.js` + `index.d.ts` + hashed CSS), then:
+The package is consumed **by exact git tag** (public repo → no tokens anywhere). `dist/` is a build
+artifact and is *not* committed, so the `prepare` script builds it during `npm install`:
 
 ```jsonc
-// a) exact git tag (private, deterministic, zero registry infra)
 "@agiler/ui": "github:Ai-labs-tn/agiler-ui#v0.1.0"
-
-// b) local path during development (run `npm run build` in this repo first)
-"@agiler/ui": "file:../agiler-ui"
 ```
+
+npm installs the package's devDependencies in a temp clone and runs `prepare` → `dist/` exists for
+consumers (this is also what happens on Render, with no build secret needed).
 
 Then, in the app entry:
 
 ```tsx
 import '@agiler/ui/tokens.css';
 import '@agiler/ui/themes.css';
-import { Button, Card, Badge } from '@agiler/ui';
+import { Button, Card, Badge, ThemeProvider } from '@agiler/ui';
 ```
 
 `theme.json` per order overrides tokens only:
