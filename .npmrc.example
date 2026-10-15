@@ -1,0 +1,4 @@
+# Copy to `.npmrc` and fill in a token with `read:packages` (consumer) or
+# `write:packages` (publisher). Never commit the real .npmrc.
+@agiler:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN}

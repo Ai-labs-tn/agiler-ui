@@ -1,0 +1,318 @@
+{
+  "name": "@agiler/ui",
+  "version": "0.1.0",
+  "generatedAt": "2026-10-15T01:46:39.497Z",
+  "themeAttribute": "data-theme",
+  "themes": [
+    "light",
+    "dark",
+    "system"
+  ],
+  "tokensFile": "src/styles/tokens.css",
+  "themesFile": "src/styles/themes.css",
+  "counts": {
+    "available": 4,
+    "planned": 26,
+    "total": 30
+  },
+  "rules": [
+    "Compose screens only from components declared here; never write raw CSS, hex colours or inline styles.",
+    "Use the tokens in tokens.css (or a per-order theme.json override) for every visual value.",
+    "Pin an exact @agiler/ui version per order; structure is identical everywhere, brand comes from theme tokens."
+  ],
+  "components": [
+    {
+      "name": "Alert",
+      "status": "planned",
+      "category": "feedback",
+      "summary": "Inline message with title, body and semantic variant."
+    },
+    {
+      "name": "Badge",
+      "status": "available",
+      "category": "feedback",
+      "source": "src/components/feedback/Badge.tsx",
+      "summary": "Compact status/label chip with semantic variants.",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode"
+        },
+        {
+          "name": "variant",
+          "type": "'neutral' | 'primary' | 'success' | 'warning' | 'danger' | 'info'",
+          "default": "'neutral'"
+        },
+        {
+          "name": "size",
+          "type": "'sm' | 'md'",
+          "default": "'md'"
+        }
+      ],
+      "a11y": [
+        "Purely presentational; pair with text that carries the meaning."
+      ],
+      "snippet": "<Badge variant=\"success\" size=\"sm\">Delivered</Badge>"
+    },
+    {
+      "name": "Breadcrumbs",
+      "status": "planned",
+      "category": "navigation",
+      "summary": "Hierarchical location trail."
+    },
+    {
+      "name": "Button",
+      "status": "available",
+      "category": "buttons",
+      "source": "src/components/buttons/Button.tsx",
+      "summary": "Primary action control with variants, sizes, loading state and icon slots.",
+      "props": [
+        {
+          "name": "variant",
+          "type": "'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'link'",
+          "default": "'primary'"
+        },
+        {
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "default": "'md'"
+        },
+        {
+          "name": "isLoading",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "isFullWidth",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "leftIcon",
+          "type": "ReactNode"
+        },
+        {
+          "name": "rightIcon",
+          "type": "ReactNode"
+        },
+        {
+          "name": "type",
+          "type": "'button' | 'submit' | 'reset'",
+          "default": "'button'"
+        }
+      ],
+      "a11y": [
+        "Renders a native <button>.",
+        "Sets aria-busy while loading and disables the control."
+      ],
+      "snippet": "<Button variant=\"primary\" size=\"md\" onClick={save}>Save</Button>"
+    },
+    {
+      "name": "Card",
+      "status": "available",
+      "category": "cards",
+      "source": "src/components/cards/Card.tsx",
+      "summary": "Surface container with optional header/footer and padding scale.",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode"
+        },
+        {
+          "name": "header",
+          "type": "ReactNode"
+        },
+        {
+          "name": "footer",
+          "type": "ReactNode"
+        },
+        {
+          "name": "padding",
+          "type": "'none' | 'sm' | 'md' | 'lg'",
+          "default": "'md'"
+        },
+        {
+          "name": "isInteractive",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "as",
+          "type": "ElementType",
+          "default": "'div'"
+        }
+      ],
+      "a11y": [
+        "Use `as` to keep landmarks/headings semantic (e.g. as=\"article\", as=\"section\")."
+      ],
+      "snippet": "<Card header={<h2>Accounts</h2>} padding=\"md\">…</Card>"
+    },
+    {
+      "name": "Checkbox",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Labelled checkbox control."
+    },
+    {
+      "name": "DataTable",
+      "status": "planned",
+      "category": "tables",
+      "summary": "Table with sorting, search, paging, export and empty state."
+    },
+    {
+      "name": "DatePicker",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Date selection control."
+    },
+    {
+      "name": "Drawer",
+      "status": "planned",
+      "category": "modals",
+      "summary": "Edge-anchored panel for detail views and mobile navigation."
+    },
+    {
+      "name": "FieldLabel",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Form field label primitive."
+    },
+    {
+      "name": "FieldMessage",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Form field error/helper message primitive."
+    },
+    {
+      "name": "FileUpload",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Drag-and-drop / browse file input."
+    },
+    {
+      "name": "IconButton",
+      "status": "planned",
+      "category": "buttons",
+      "summary": "Square icon-only button; requires an aria-label."
+    },
+    {
+      "name": "Input",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Labelled text input with error and helper text."
+    },
+    {
+      "name": "Loader",
+      "status": "planned",
+      "category": "loaders",
+      "summary": "Full-area loading state with label."
+    },
+    {
+      "name": "Modal",
+      "status": "planned",
+      "category": "modals",
+      "summary": "Centered dialog with overlay, focus trap and footer slot."
+    },
+    {
+      "name": "MultiSelect",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Multi-value dropdown."
+    },
+    {
+      "name": "Pagination",
+      "status": "planned",
+      "category": "tables",
+      "summary": "Page navigation control."
+    },
+    {
+      "name": "Radio",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Labelled radio control."
+    },
+    {
+      "name": "RadioGroup",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Grouped radio options with a shared label."
+    },
+    {
+      "name": "Select",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Labelled dropdown with option list."
+    },
+    {
+      "name": "Sidebar",
+      "status": "planned",
+      "category": "navigation",
+      "summary": "Primary navigation with groups and collapse."
+    },
+    {
+      "name": "Skeleton",
+      "status": "planned",
+      "category": "loaders",
+      "summary": "Content placeholder shape."
+    },
+    {
+      "name": "Spinner",
+      "status": "available",
+      "category": "loaders",
+      "source": "src/components/loaders/Spinner.tsx",
+      "summary": "Indeterminate loading indicator.",
+      "props": [
+        {
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "default": "'md'"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "'Loading'"
+        }
+      ],
+      "a11y": [
+        "role=\"status\" + aria-live=\"polite\"; the label is announced."
+      ],
+      "snippet": "<Spinner size=\"sm\" label=\"Loading accounts\" />"
+    },
+    {
+      "name": "TextArea",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Labelled multi-line text input with optional character counter."
+    },
+    {
+      "name": "ThemeToggle",
+      "status": "planned",
+      "category": "navigation",
+      "summary": "Light/dark/system theme switch."
+    },
+    {
+      "name": "Toast",
+      "status": "planned",
+      "category": "feedback",
+      "summary": "Transient notification surfaced via a viewport/provider."
+    },
+    {
+      "name": "Toggle",
+      "status": "planned",
+      "category": "forms",
+      "summary": "Accessible switch (role=\"switch\")."
+    },
+    {
+      "name": "Tooltip",
+      "status": "planned",
+      "category": "feedback",
+      "summary": "Hover/focus hint anchored to a trigger."
+    },
+    {
+      "name": "TopBar",
+      "status": "planned",
+      "category": "navigation",
+      "summary": "Application header with title and action slots."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "name": "@agiler/ui",
+  "version": "0.1.0",
+  "description": "AGILER design system — deterministic UI primitives + design tokens shipped to every generated order project (write once, ship to many).",
+  "type": "module",
+  "license": "UNLICENSED",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "manifest.json",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/styles/tokens.css",
+    "./themes.css": "./src/styles/themes.css",
+    "./manifest.json": "./manifest.json",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "manifest": "node scripts/generate-manifest.mjs",
+    "manifest:check": "node scripts/check-manifest.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

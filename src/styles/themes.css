@@ -1,0 +1,130 @@
+/**
+ * Semantic theme tokens. Only semantic variables are defined per theme so that
+ * every component automatically adapts when `data-theme` changes on <html>.
+ *
+ * Source of truth: extracted from agiler/src/styles/themes.css.
+ */
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --color-primary: var(--palette-brand-600);
+  --color-primary-hover: var(--palette-brand-700);
+  --color-primary-active: var(--palette-brand-800);
+  --color-primary-soft: var(--palette-brand-50);
+  --color-on-primary: var(--palette-white);
+
+  --color-secondary: var(--palette-slate-600);
+  --color-secondary-hover: var(--palette-slate-700);
+  --color-secondary-active: var(--palette-slate-800);
+  --color-secondary-soft: var(--palette-slate-100);
+  --color-on-secondary: var(--palette-white);
+
+  --color-success: var(--palette-green-600);
+  --color-success-soft: #dcfce7;
+  --color-on-success: var(--palette-white);
+
+  --color-warning: var(--palette-amber-600);
+  --color-warning-soft: #fef3c7;
+  --color-on-warning: var(--palette-white);
+
+  --color-danger: var(--palette-red-600);
+  --color-danger-hover: var(--palette-red-500);
+  --color-danger-soft: #fee2e2;
+  --color-on-danger: var(--palette-white);
+
+  --color-info: var(--palette-sky-600);
+  --color-info-soft: #e0f2fe;
+  --color-on-info: var(--palette-white);
+
+  --color-background: var(--palette-slate-50);
+  --color-background-elevated: var(--palette-white);
+  --color-surface: var(--palette-white);
+  --color-surface-hover: var(--palette-slate-100);
+  --color-surface-sunken: var(--palette-slate-100);
+  --color-surface-overlay: rgb(15 23 42 / 0.5);
+
+  --color-text-primary: var(--palette-slate-900);
+  --color-text-secondary: var(--palette-slate-500);
+  --color-text-muted: var(--palette-slate-400);
+  --color-text-inverse: var(--palette-white);
+
+  --color-border: var(--palette-slate-200);
+  --color-border-strong: var(--palette-slate-300);
+  --color-focus-ring: rgb(53 99 235 / 0.45);
+
+  --color-shadow: rgb(15 23 42 / 0.1);
+  --shadow-sm: 0 1px 2px 0 var(--color-shadow);
+  --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.12), 0 2px 4px -2px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 12px 28px -6px rgb(15 23 42 / 0.16), 0 4px 8px -4px rgb(15 23 42 / 0.1);
+  --shadow-xl: 0 24px 48px -12px rgb(15 23 42 / 0.22);
+
+  --glass-background: rgb(255 255 255 / 0.72);
+  --glass-border: rgb(255 255 255 / 0.6);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-primary: var(--palette-brand-400);
+  --color-primary-hover: var(--palette-brand-300);
+  --color-primary-active: var(--palette-brand-200);
+  --color-primary-soft: rgb(53 99 235 / 0.16);
+  --color-on-primary: var(--palette-slate-950);
+
+  --color-secondary: var(--palette-slate-300);
+  --color-secondary-hover: var(--palette-slate-200);
+  --color-secondary-active: var(--palette-slate-100);
+  --color-secondary-soft: rgb(148 163 184 / 0.16);
+  --color-on-secondary: var(--palette-slate-950);
+
+  --color-success: #4ade80;
+  --color-success-soft: rgb(22 163 74 / 0.18);
+  --color-on-success: var(--palette-slate-950);
+
+  --color-warning: #fbbf24;
+  --color-warning-soft: rgb(217 119 6 / 0.18);
+  --color-on-warning: var(--palette-slate-950);
+
+  --color-danger: #f87171;
+  --color-danger-hover: #fca5a5;
+  --color-danger-soft: rgb(220 38 38 / 0.18);
+  --color-on-danger: var(--palette-slate-950);
+
+  --color-info: #38bdf8;
+  --color-info-soft: rgb(2 132 199 / 0.2);
+  --color-on-info: var(--palette-slate-950);
+
+  --color-background: var(--palette-slate-950);
+  --color-background-elevated: var(--palette-slate-900);
+  --color-surface: var(--palette-slate-900);
+  --color-surface-hover: var(--palette-slate-800);
+  --color-surface-sunken: #080d18;
+  --color-surface-overlay: rgb(2 6 23 / 0.65);
+
+  --color-text-primary: var(--palette-slate-50);
+  --color-text-secondary: var(--palette-slate-400);
+  --color-text-muted: var(--palette-slate-500);
+  --color-text-inverse: var(--palette-slate-950);
+
+  --color-border: rgb(148 163 184 / 0.18);
+  --color-border-strong: rgb(148 163 184 / 0.32);
+  --color-focus-ring: rgb(142 176 255 / 0.5);
+
+  --color-shadow: rgb(0 0 0 / 0.5);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 12px 28px -6px rgb(0 0 0 / 0.6), 0 4px 8px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 24px 48px -12px rgb(0 0 0 / 0.7);
+
+  --glass-background: rgb(15 23 42 / 0.55);
+  --glass-border: rgb(148 163 184 / 0.18);
+}
+
+/* Fallback for environments that render before the theme script resolves, or
+ * when `data-theme="system"` is used intentionally. */
+@media (prefers-color-scheme: dark) {
+  [data-theme='system'] {
+    color-scheme: dark;
+  }
+}
