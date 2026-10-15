@@ -532,6 +532,8 @@
     { "name": "mediaQueryFrom", "category": "theme", "summary": "Build a mobile-first min-width media query string." },
     { "name": "cssVar", "category": "theme", "summary": "Reference a CSS custom property by name." },
     { "name": "durations", "category": "theme", "summary": "Typed motion durations." },
-    { "name": "zIndex", "category": "theme", "summary": "Typed z-index scale." }
+    { "name": "zIndex", "category": "theme", "summary": "Typed z-index scale." },
+    { "name": "useFieldA11y", "category": "forms", "summary": "Generate the label/input/error ids a field needs for aria wiring." },
+    { "name": "buildDescribedBy", "category": "forms", "summary": "Compose an aria-describedby string from field a11y ids." }
   ]
 }

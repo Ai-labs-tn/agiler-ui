@@ -34,6 +34,11 @@ export { RadioGroup, type RadioGroupProps, type RadioOption } from './components
 export { Select, type SelectOption, type SelectProps } from './components/forms/Select';
 export { TextArea, type TextAreaProps } from './components/forms/TextArea';
 export { Toggle, type ToggleProps } from './components/forms/Toggle';
+export {
+  buildDescribedBy,
+  useFieldA11y,
+  type FieldA11yIds,
+} from './components/forms/useFieldA11y';
 
 // Loaders
 export { Loader, type LoaderProps } from './components/loaders/Loader';
@@ -51,7 +56,7 @@ export { ThemeToggle } from './components/navigation/ThemeToggle';
 export { TopBar, type TopBarProps } from './components/navigation/TopBar';
 
 // Tables
-export { DataTable, type DataTableProps } from './components/tables/DataTable';
+export { DataTable, type Column, type DataTableProps } from './components/tables/DataTable';
 export { Pagination, type PaginationProps } from './components/tables/Pagination';
 
 // Theme + theming contract (non-component API)
