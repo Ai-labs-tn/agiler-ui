@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-10-15
+
+### Added
+
+- **`AuthMethods`** — the auth methods without a shell (one-time-code and password tabs plus the
+  reset flow). `AuthScreen` is now `AuthShell` + `AuthMethods`, so a layout archetype that owns its
+  own shell (`auth-centered`) can compose the same methods in its `main` region. This is the piece a
+  generated order project's `sign-in` screen uses.
+
 ## [0.3.1] — 2026-10-15
 
 ### Fixed

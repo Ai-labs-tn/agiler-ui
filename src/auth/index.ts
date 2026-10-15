@@ -1,3 +1,4 @@
+export { AuthMethods, type AuthMethodsProps } from './AuthMethods';
 export { AuthScreen, type AuthScreenProps } from './AuthScreen';
 export { AuthShell, type AuthShellProps } from './AuthShell';
 export { AuthTabs, type AuthTab, type AuthTabsProps } from './AuthTabs';

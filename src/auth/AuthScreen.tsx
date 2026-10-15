@@ -1,32 +1,13 @@
-import { useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
+import { AuthMethods, type AuthMethodsProps } from './AuthMethods';
 import { AuthShell } from './AuthShell';
-import { AuthTabs } from './AuthTabs';
-import { OtpSignIn } from './OtpSignIn';
-import { PasswordSignIn } from './PasswordSignIn';
-import { PasswordReset } from './PasswordReset';
 
-export interface AuthScreenProps {
+export interface AuthScreenProps extends AuthMethodsProps {
   title?: ReactNode;
   subtitle?: ReactNode;
   brand?: ReactNode;
   footer?: ReactNode;
-  /** Which method is shown first. */
-  initialTab?: 'otp' | 'password';
-  defaultEmail?: string;
-  /** Dev echo codes (OTP and reset) while no provider is wired. */
-  devCode?: string | null;
-  resetDevCode?: string | null;
-  error?: string | null;
-  isSubmitting?: boolean;
-  onRequestCode: (email: string) => Promise<void> | void;
-  onVerifyCode: (code: string) => Promise<void> | void;
-  onPasswordSignIn: (email: string, password: string) => Promise<void> | void;
-  onResetPassword: (email: string, code: string, newPassword: string) => Promise<void> | void;
-  /** Send the *reset* code (a different endpoint than the sign-in code). Falls back to onRequestCode. */
-  onRequestResetCode?: (email: string) => Promise<void> | void;
-  onCancelReset?: () => void;
-  minPasswordLength?: number;
 }
 
 /**
@@ -41,78 +22,11 @@ export function AuthScreen({
   subtitle = 'Use a one-time code or your password.',
   brand,
   footer,
-  initialTab = 'otp',
-  defaultEmail = '',
-  devCode = null,
-  resetDevCode = null,
-  error = null,
-  isSubmitting = false,
-  onRequestCode,
-  onVerifyCode,
-  onPasswordSignIn,
-  onResetPassword,
-  onRequestResetCode,
-  onCancelReset,
-  minPasswordLength,
+  ...methods
 }: AuthScreenProps) {
-  const [view, setView] = useState<'sign-in' | 'reset'>('sign-in');
-  const [tab, setTab] = useState<'otp' | 'password'>(initialTab);
-
-  if (view === 'reset') {
-    return (
-      <AuthShell title="Reset password" subtitle="We will send a reset code." brand={brand} footer={footer}>
-        <PasswordReset
-          onRequestCode={onRequestResetCode ?? onRequestCode}
-          onReset={onResetPassword}
-          onCancel={() => {
-            onCancelReset?.();
-            setView('sign-in');
-          }}
-          devCode={resetDevCode}
-          error={error}
-          isSubmitting={isSubmitting}
-          defaultEmail={defaultEmail}
-          minPasswordLength={minPasswordLength}
-        />
-      </AuthShell>
-    );
-  }
-
   return (
     <AuthShell title={title} subtitle={subtitle} brand={brand} footer={footer}>
-      <AuthTabs
-        value={tab}
-        onChange={(id) => setTab(id === 'password' ? 'password' : 'otp')}
-        tabs={[
-          {
-            id: 'otp',
-            label: 'One-time code',
-            content: (
-              <OtpSignIn
-                onRequestCode={onRequestCode}
-                onVerifyCode={onVerifyCode}
-                devCode={devCode}
-                error={error}
-                isSubmitting={isSubmitting}
-                defaultEmail={defaultEmail}
-              />
-            ),
-          },
-          {
-            id: 'password',
-            label: 'Password',
-            content: (
-              <PasswordSignIn
-                onSubmit={onPasswordSignIn}
-                onForgotPassword={() => setView('reset')}
-                error={error}
-                isSubmitting={isSubmitting}
-                defaultEmail={defaultEmail}
-              />
-            ),
-          },
-        ]}
-      />
+      <AuthMethods {...methods} />
     </AuthShell>
   );
 }

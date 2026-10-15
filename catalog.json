@@ -31,6 +31,33 @@
       "snippet": "<Alert variant=\"warning\" title=\"Over budget\">The quote exceeds the budget.</Alert>"
     },
     {
+      "name": "AuthMethods",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/AuthMethods.tsx",
+      "summary": "The auth methods without a shell: one-time-code and password tabs plus reset — for a layout that owns its own shell.",
+      "props": [
+        { "name": "initialTab", "type": "'otp' | 'password'", "default": "'otp'" },
+        { "name": "defaultEmail", "type": "string" },
+        { "name": "devCode", "type": "string | null" },
+        { "name": "resetDevCode", "type": "string | null" },
+        { "name": "error", "type": "string | null" },
+        { "name": "isSubmitting", "type": "boolean", "default": "false" },
+        { "name": "onRequestCode", "type": "(email: string) => void | Promise<void>", "required": true },
+        { "name": "onVerifyCode", "type": "(code: string) => void | Promise<void>", "required": true },
+        { "name": "onPasswordSignIn", "type": "(email: string, password: string) => void | Promise<void>", "required": true },
+        { "name": "onResetPassword", "type": "(email: string, code: string, newPassword: string) => void | Promise<void>", "required": true },
+        { "name": "onRequestResetCode", "type": "(email: string) => void | Promise<void>" },
+        { "name": "onCancelReset", "type": "() => void" },
+        { "name": "minPasswordLength", "type": "number", "default": "8" }
+      ],
+      "a11y": [
+        "the sign-in method is a tablist (role=tab/tabpanel) with arrow-key navigation",
+        "errors are announced via role=alert"
+      ],
+      "snippet": "<AuthMethods onRequestCode={requestCode} onVerifyCode={verifyCode} onPasswordSignIn={signIn} onResetPassword={reset} />"
+    },
+    {
       "name": "AuthScreen",
       "status": "available",
       "category": "auth",

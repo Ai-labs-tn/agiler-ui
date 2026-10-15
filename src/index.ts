@@ -87,12 +87,14 @@ export {
 
 // Auth templates (standard sign-in surfaces: passwordless + password + reset)
 export {
+  AuthMethods,
   AuthScreen,
   AuthShell,
   AuthTabs,
   OtpSignIn,
   PasswordReset,
   PasswordSignIn,
+  type AuthMethodsProps,
   type AuthScreenProps,
   type AuthShellProps,
   type AuthTab,

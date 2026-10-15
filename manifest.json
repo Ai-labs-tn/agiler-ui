@@ -1,7 +1,7 @@
 {
   "name": "@agiler/ui",
-  "version": "0.3.1",
-  "generatedAt": "2026-10-15T04:41:28.493Z",
+  "version": "0.4.0",
+  "generatedAt": "2026-10-15T04:43:32.873Z",
   "themeAttribute": "data-theme",
   "themes": [
     "light",
@@ -11,11 +11,11 @@
   "tokensFile": "src/styles/tokens.css",
   "themesFile": "src/styles/themes.css",
   "counts": {
-    "available": 48,
+    "available": 49,
     "planned": 0,
     "api": 11,
     "layouts": 8,
-    "total": 48
+    "total": 49
   },
   "rules": [
     "Compose screens only from components declared here; never write raw CSS, hex colours or inline styles.",
@@ -81,6 +81,79 @@
         "sidebar collapses below lg — expose it as a Drawer"
       ],
       "snippet": "<AppShell sidebar={<Sidebar … />} topbar={<TopBar … />}>…</AppShell>"
+    },
+    {
+      "name": "AuthMethods",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/AuthMethods.tsx",
+      "summary": "The auth methods without a shell: one-time-code and password tabs plus reset — for a layout that owns its own shell.",
+      "props": [
+        {
+          "name": "initialTab",
+          "type": "'otp' | 'password'",
+          "default": "'otp'"
+        },
+        {
+          "name": "defaultEmail",
+          "type": "string"
+        },
+        {
+          "name": "devCode",
+          "type": "string | null"
+        },
+        {
+          "name": "resetDevCode",
+          "type": "string | null"
+        },
+        {
+          "name": "error",
+          "type": "string | null"
+        },
+        {
+          "name": "isSubmitting",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "onRequestCode",
+          "type": "(email: string) => void | Promise<void>",
+          "required": true
+        },
+        {
+          "name": "onVerifyCode",
+          "type": "(code: string) => void | Promise<void>",
+          "required": true
+        },
+        {
+          "name": "onPasswordSignIn",
+          "type": "(email: string, password: string) => void | Promise<void>",
+          "required": true
+        },
+        {
+          "name": "onResetPassword",
+          "type": "(email: string, code: string, newPassword: string) => void | Promise<void>",
+          "required": true
+        },
+        {
+          "name": "onRequestResetCode",
+          "type": "(email: string) => void | Promise<void>"
+        },
+        {
+          "name": "onCancelReset",
+          "type": "() => void"
+        },
+        {
+          "name": "minPasswordLength",
+          "type": "number",
+          "default": "8"
+        }
+      ],
+      "a11y": [
+        "the sign-in method is a tablist (role=tab/tabpanel) with arrow-key navigation",
+        "errors are announced via role=alert"
+      ],
+      "snippet": "<AuthMethods onRequestCode={requestCode} onVerifyCode={verifyCode} onPasswordSignIn={signIn} onResetPassword={reset} />"
     },
     {
       "name": "AuthScreen",
