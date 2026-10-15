@@ -16,7 +16,7 @@
     { "id": "footer", "prop": "footer", "required": false }
   ],
   "requiredComponents": ["PublicShell", "Grid", "Panel", "Section", "PageHeader"],
-  "requiredFeatures": ["landing", "gallery", "contact"],
+  "requiredFeatures": ["gallery"],
   "breakpoints": {
     "lg": "tiles flow 3–4 across",
     "md": "tiles flow 2 across",

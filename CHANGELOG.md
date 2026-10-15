@@ -5,6 +5,15 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-10-15
+
+### Changed
+
+- Portfolio layouts (`bento-grid`, `asymmetrical`) now require only the `gallery` feature — it is the
+  region their structure depends on. `landing`/`about`/`contact` remain **optional** regions with
+  defaults, so the layouts map cleanly onto both portfolio audiences (and any recipe that has a
+  gallery).
+
 ## [0.2.0] — 2026-10-15
 
 ### Added
