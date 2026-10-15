@@ -50,6 +50,10 @@ artifact and is *not* committed, so the `prepare` script builds it during `npm i
 npm installs the package's devDependencies in a temp clone and runs `prepare` → `dist/` exists for
 consumers (this is also what happens on Render, with no build secret needed).
 
+> **Test runners / SSR:** the package ships CSS Modules. Any Jest/Vitest consumer must let Vite
+> transform it rather than externalising it — e.g. in `vitest.config.ts`:
+> `test.server.deps.inline: ['@agiler/ui']`.
+
 Then, in the app entry:
 
 ```tsx
