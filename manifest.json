@@ -1,7 +1,7 @@
 {
   "name": "@agiler/ui",
-  "version": "0.2.1",
-  "generatedAt": "2026-10-15T03:34:24.741Z",
+  "version": "0.2.2",
+  "generatedAt": "2026-10-15T03:49:14.040Z",
   "themeAttribute": "data-theme",
   "themes": [
     "light",
@@ -239,6 +239,18 @@
         {
           "name": "helperText",
           "type": "string"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
         }
       ],
       "a11y": [
@@ -354,6 +366,26 @@
         {
           "name": "isRequired",
           "type": "boolean"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "min",
+          "type": "string"
+        },
+        {
+          "name": "max",
+          "type": "string"
         }
       ],
       "a11y": [
@@ -640,6 +672,43 @@
         },
         {
           "name": "isRequired",
+          "type": "boolean"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "'text'"
+        },
+        {
+          "name": "placeholder",
+          "type": "string"
+        },
+        {
+          "name": "autoComplete",
+          "type": "string"
+        },
+        {
+          "name": "inputMode",
+          "type": "string"
+        },
+        {
+          "name": "maxLength",
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "readOnly",
           "type": "boolean"
         }
       ],
@@ -1066,6 +1135,18 @@
         {
           "name": "isRequired",
           "type": "boolean"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
         }
       ],
       "a11y": [
@@ -1278,6 +1359,34 @@
         {
           "name": "isRequired",
           "type": "boolean"
+        },
+        {
+          "name": "placeholder",
+          "type": "string"
+        },
+        {
+          "name": "rows",
+          "type": "number"
+        },
+        {
+          "name": "resize",
+          "type": "'none' | 'vertical' | 'horizontal' | 'both'"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean"
         }
       ],
       "a11y": [
@@ -1368,6 +1477,14 @@
           "name": "size",
           "type": "'sm' | 'md'",
           "default": "'md'"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "id",
+          "type": "string"
         }
       ],
       "a11y": [

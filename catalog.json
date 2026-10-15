@@ -104,7 +104,10 @@
       "props": [
         { "name": "label", "type": "ReactNode", "required": true },
         { "name": "error", "type": "string" },
-        { "name": "helperText", "type": "string" }
+        { "name": "helperText", "type": "string" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "name", "type": "string" },
+        { "name": "id", "type": "string" }
       ],
       "a11y": ["Label wraps the input; error sets aria-invalid and is linked via aria-describedby."],
       "snippet": "<Checkbox label=\"Run with AI agents\" checked={on} onChange={…} />"
@@ -150,7 +153,12 @@
         { "name": "mode", "type": "'date' | 'datetime-local' | 'time' | 'month'", "default": "'date'" },
         { "name": "error", "type": "string" },
         { "name": "helperText", "type": "string" },
-        { "name": "isRequired", "type": "boolean" }
+        { "name": "isRequired", "type": "boolean" },
+        { "name": "name", "type": "string" },
+        { "name": "id", "type": "string" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "min", "type": "string" },
+        { "name": "max", "type": "string" }
       ],
       "a11y": ["Labelled; error linked via aria-describedby."],
       "snippet": "<DatePicker label=\"Start date\" mode=\"date\" value={start} onChange={…} />"
@@ -250,7 +258,16 @@
         { "name": "rightAddon", "type": "ReactNode" },
         { "name": "error", "type": "string" },
         { "name": "helperText", "type": "string" },
-        { "name": "isRequired", "type": "boolean" }
+        { "name": "isRequired", "type": "boolean" },
+        { "name": "type", "type": "string", "default": "'text'" },
+        { "name": "placeholder", "type": "string" },
+        { "name": "autoComplete", "type": "string" },
+        { "name": "inputMode", "type": "string" },
+        { "name": "maxLength", "type": "number" },
+        { "name": "name", "type": "string" },
+        { "name": "id", "type": "string" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "readOnly", "type": "boolean" }
       ],
       "a11y": ["label + aria-describedby (error/helper) + aria-invalid on error."],
       "snippet": "<Input label=\"Email\" type=\"email\" isRequired value={email} onChange={…} />"
@@ -375,7 +392,10 @@
         { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
         { "name": "error", "type": "string" },
         { "name": "helperText", "type": "string" },
-        { "name": "isRequired", "type": "boolean" }
+        { "name": "isRequired", "type": "boolean" },
+        { "name": "name", "type": "string" },
+        { "name": "id", "type": "string" },
+        { "name": "disabled", "type": "boolean" }
       ],
       "a11y": ["Labelled; aria-required / aria-invalid wired via useFieldA11y."],
       "snippet": "<Select label=\"Product type\" options={PRODUCT_TYPES} value={type} onChange={…} />"
@@ -438,7 +458,14 @@
         { "name": "maxLength", "type": "number" },
         { "name": "error", "type": "string" },
         { "name": "helperText", "type": "string" },
-        { "name": "isRequired", "type": "boolean" }
+        { "name": "isRequired", "type": "boolean" },
+        { "name": "placeholder", "type": "string" },
+        { "name": "rows", "type": "number" },
+        { "name": "resize", "type": "'none' | 'vertical' | 'horizontal' | 'both'" },
+        { "name": "name", "type": "string" },
+        { "name": "id", "type": "string" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "readOnly", "type": "boolean" }
       ],
       "a11y": ["Labelled; error/helper linked via aria-describedby."],
       "snippet": "<TextArea label=\"Spec\" rows={4} maxLength={2000} showCount value={spec} onChange={…} />"
@@ -479,7 +506,9 @@
         { "name": "checked", "type": "boolean", "required": true },
         { "name": "onCheckedChange", "type": "(checked: boolean) => void", "required": true },
         { "name": "label", "type": "string" },
-        { "name": "size", "type": "'sm' | 'md'", "default": "'md'" }
+        { "name": "size", "type": "'sm' | 'md'", "default": "'md'" },
+        { "name": "disabled", "type": "boolean" },
+        { "name": "id", "type": "string" }
       ],
       "a11y": ["role=\"switch\" + aria-checked; `label` supplies the accessible name."],
       "snippet": "<Toggle checked={on} onCheckedChange={setOn} label=\"Human-in-the-loop\" />"

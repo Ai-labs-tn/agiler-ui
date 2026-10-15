@@ -5,6 +5,18 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.2.2] — 2026-10-15
+
+### Added
+
+- **Native pass-through attributes** are now declared in the catalog for the form components, so
+  screen specs (and therefore the Design agent) may use them: `Input` (type, placeholder,
+  autoComplete, inputMode, maxLength, name, id, disabled, readOnly), `TextArea` (placeholder, rows,
+  resize, name, id, disabled, readOnly), `Select`/`DatePicker` (name, id, disabled, min/max),
+  `Checkbox`/`Toggle` (name, id, disabled).
+  The spec validator only accepts catalogued props, so anything not declared here is rejected — this
+  closes the gap that made `type="email"` / `placeholder="…"` impossible to compose.
+
 ## [0.2.1] — 2026-10-15
 
 ### Changed
