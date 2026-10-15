@@ -5,6 +5,23 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-10-15
+
+### Added
+
+- **Auth templates** (6) — the standard sign-in surfaces, presentational and controlled so both
+  AGILER and every generated order project can reuse them (the app owns the HTTP):
+  - `AuthScreen` — **the standard auth screen**: passwordless (one-time code) and password sign-in
+    in one screen as tabs, plus the reset flow; the piece an order's `sign-in` screen composes.
+  - `AuthShell` — centered card shell (single `<h1>`, brand/footer slots, no app chrome).
+  - `AuthTabs` — accessible `role=tablist` method switcher with arrow-key navigation.
+  - `OtpSignIn` — email → one-time code, with resend and dev-echo support.
+  - `PasswordSignIn` — email + password, with an optional “Forgot password?” action.
+  - `PasswordReset` — email → reset code + new password + confirmation.
+- **`auth-centered` layout archetype** — a standalone centered card (shell `auth-shell`, regions
+  main · footer) for sign-in and reset screens; not feature-gated, so any app with accounts can ship
+  it alongside its primary layout.
+
 ## [0.2.2] — 2026-10-15
 
 ### Added

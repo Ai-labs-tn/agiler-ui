@@ -85,10 +85,30 @@ export {
   type TopNavShellProps,
 } from './components/layout';
 
+// Auth templates (standard sign-in surfaces: passwordless + password + reset)
+export {
+  AuthScreen,
+  AuthShell,
+  AuthTabs,
+  OtpSignIn,
+  PasswordReset,
+  PasswordSignIn,
+  type AuthScreenProps,
+  type AuthShellProps,
+  type AuthTab,
+  type AuthTabsProps,
+  type OtpSignInProps,
+  type PasswordResetProps,
+  type PasswordSignInProps,
+} from './auth';
+
 // Layout archetypes (page skeletons an order picks — see v3.1 plan §3.2)
 export {
   AsymmetricalLayout,
   AsymmetricalPreview,
+  AuthCenteredLayout,
+  AuthCenteredPreview,
+  type AuthCenteredLayoutProps,
   BentoGridLayout,
   BentoGridPreview,
   CardDashboardLayout,

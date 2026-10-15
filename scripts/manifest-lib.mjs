@@ -12,7 +12,7 @@ import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-export const SHELLS = ['public-shell', 'app-shell-sidebar', 'topnav-shell'];
+export const SHELLS = ['public-shell', 'app-shell-sidebar', 'topnav-shell', 'auth-shell'];
 
 export const readJson = (path) => JSON.parse(readFileSync(join(root, path), 'utf8'));
 

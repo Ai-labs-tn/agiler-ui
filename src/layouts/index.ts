@@ -9,6 +9,8 @@
 export type { DashboardStat } from './columnar-grid-dashboard/layout';
 export type { BoardLane } from './kanban-board/layout';
 
+export { AuthCenteredLayout, type AuthCenteredLayoutProps } from './auth-centered/layout';
+export { AuthCenteredPreview } from './auth-centered/layout.preview';
 export { AsymmetricalLayout, type AsymmetricalLayoutProps } from './asymmetrical/layout';
 export { AsymmetricalPreview } from './asymmetrical/layout.preview';
 export { BentoGridLayout, type BentoGridLayoutProps } from './bento-grid/layout';

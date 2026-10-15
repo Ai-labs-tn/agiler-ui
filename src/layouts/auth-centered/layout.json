@@ -1,0 +1,27 @@
+{
+  "id": "auth-centered",
+  "component": "AuthCenteredLayout",
+  "preview": "AuthCenteredPreview",
+  "name": "Auth-Centered",
+  "summary": "Standalone centered card for sign-in and password-reset screens (no app chrome).",
+  "status": "available",
+  "shell": "auth-shell",
+  "suggestedAudiences": ["crm", "erp", "healthcare", "portfolio-dynamic"],
+  "regions": [
+    { "id": "main", "prop": "children", "required": true },
+    { "id": "footer", "prop": "footer", "required": false }
+  ],
+  "requiredComponents": ["AuthShell", "AuthTabs", "OtpSignIn", "PasswordSignIn", "PasswordReset"],
+  "requiredFeatures": [],
+  "breakpoints": {
+    "lg": "card centred, max 26rem",
+    "md": "card fills the width minus page padding",
+    "sm": "single column, full-width fields"
+  },
+  "a11y": [
+    "one <h1> per screen (AuthShell)",
+    "tab list with role=tablist/tab/tabpanel and arrow-key navigation",
+    "errors announced via role=alert"
+  ],
+  "notes": "Auth screens are not feature-gated: any app with accounts can ship this layout."
+}

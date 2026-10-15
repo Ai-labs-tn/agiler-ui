@@ -31,6 +31,128 @@
       "snippet": "<Alert variant=\"warning\" title=\"Over budget\">The quote exceeds the budget.</Alert>"
     },
     {
+      "name": "AuthScreen",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/AuthScreen.tsx",
+      "summary": "The standard auth screen: passwordless (one-time code) and password sign-in in one screen, plus password reset.",
+      "props": [
+        { "name": "title", "type": "ReactNode", "default": "'Sign in'" },
+        { "name": "subtitle", "type": "ReactNode" },
+        { "name": "brand", "type": "ReactNode" },
+        { "name": "footer", "type": "ReactNode" },
+        { "name": "initialTab", "type": "'otp' | 'password'", "default": "'otp'" },
+        { "name": "defaultEmail", "type": "string" },
+        { "name": "devCode", "type": "string | null" },
+        { "name": "resetDevCode", "type": "string | null" },
+        { "name": "error", "type": "string | null" },
+        { "name": "isSubmitting", "type": "boolean", "default": "false" },
+        { "name": "onRequestCode", "type": "(email: string) => void | Promise<void>", "required": true },
+        { "name": "onVerifyCode", "type": "(code: string) => void | Promise<void>", "required": true },
+        { "name": "onPasswordSignIn", "type": "(email: string, password: string) => void | Promise<void>", "required": true },
+        { "name": "onResetPassword", "type": "(email: string, code: string, newPassword: string) => void | Promise<void>", "required": true },
+        { "name": "onCancelReset", "type": "() => void" },
+        { "name": "minPasswordLength", "type": "number", "default": "8" }
+      ],
+      "a11y": [
+        "one <h1> per screen (via AuthShell)",
+        "the sign-in method is a tablist (role=tab/tabpanel) with arrow-key navigation",
+        "errors are announced via role=alert"
+      ],
+      "snippet": "<AuthScreen onRequestCode={requestCode} onVerifyCode={verifyCode} onPasswordSignIn={signIn} onResetPassword={reset} />"
+    },
+    {
+      "name": "AuthShell",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/AuthShell.tsx",
+      "summary": "Centered card shell for auth screens — one <h1>, with brand and footer slots and no app chrome.",
+      "props": [
+        { "name": "title", "type": "ReactNode", "required": true },
+        { "name": "subtitle", "type": "ReactNode" },
+        { "name": "children", "type": "ReactNode", "required": true },
+        { "name": "footer", "type": "ReactNode" },
+        { "name": "brand", "type": "ReactNode" },
+        { "name": "className", "type": "string" }
+      ],
+      "a11y": [
+        "renders the screen's single <h1>",
+        "main landmark for the card"
+      ],
+      "snippet": "<AuthShell title=\"Sign in\" subtitle=\"Use a one-time code or your password.\">{form}</AuthShell>"
+    },
+    {
+      "name": "AuthTabs",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/AuthTabs.tsx",
+      "summary": "Accessible tablist for switching sign-in method (passwordless vs password). Controlled.",
+      "props": [
+        { "name": "tabs", "type": "AuthTab[]", "required": true },
+        { "name": "value", "type": "string", "required": true },
+        { "name": "onChange", "type": "(id: string) => void", "required": true },
+        { "name": "ariaLabel", "type": "string", "default": "'Sign-in method'" },
+        { "name": "className", "type": "string" }
+      ],
+      "a11y": [
+        "role=tablist/tab/tabpanel with aria-selected, aria-controls and arrow-key navigation"
+      ],
+      "snippet": "<AuthTabs value={tab} onChange={setTab} tabs={[{ id: 'otp', label: 'One-time code', content: … }]} />"
+    },
+    {
+      "name": "OtpSignIn",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/OtpSignIn.tsx",
+      "summary": "Passwordless sign-in: email → one-time code, with resend and dev-echo support.",
+      "props": [
+        { "name": "onRequestCode", "type": "(email: string) => void | Promise<void>", "required": true },
+        { "name": "onVerifyCode", "type": "(code: string) => void | Promise<void>", "required": true },
+        { "name": "devCode", "type": "string | null" },
+        { "name": "error", "type": "string | null" },
+        { "name": "isSubmitting", "type": "boolean", "default": "false" },
+        { "name": "defaultEmail", "type": "string" },
+        { "name": "verifyLabel", "type": "string", "default": "'Verify and sign in'" }
+      ],
+      "a11y": ["labelled fields; the code input uses autocomplete=\"one-time-code\""],
+      "snippet": "<OtpSignIn onRequestCode={requestCode} onVerifyCode={verifyCode} devCode={devCode} />"
+    },
+    {
+      "name": "PasswordReset",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/PasswordReset.tsx",
+      "summary": "Password reset: email → reset code + new password + confirmation.",
+      "props": [
+        { "name": "onRequestCode", "type": "(email: string) => void | Promise<void>", "required": true },
+        { "name": "onReset", "type": "(email: string, code: string, newPassword: string) => void | Promise<void>", "required": true },
+        { "name": "onCancel", "type": "() => void" },
+        { "name": "devCode", "type": "string | null" },
+        { "name": "error", "type": "string | null" },
+        { "name": "isSubmitting", "type": "boolean", "default": "false" },
+        { "name": "defaultEmail", "type": "string" },
+        { "name": "minPasswordLength", "type": "number", "default": "8" }
+      ],
+      "a11y": ["labelled fields; password inputs use autocomplete=\"new-password\""],
+      "snippet": "<PasswordReset onRequestCode={requestCode} onReset={resetPassword} devCode={resetCode} />"
+    },
+    {
+      "name": "PasswordSignIn",
+      "status": "available",
+      "category": "auth",
+      "source": "src/auth/PasswordSignIn.tsx",
+      "summary": "Password sign-in: email + password, with an optional \"Forgot password?\" action.",
+      "props": [
+        { "name": "onSubmit", "type": "(email: string, password: string) => void | Promise<void>", "required": true },
+        { "name": "onForgotPassword", "type": "() => void" },
+        { "name": "error", "type": "string | null" },
+        { "name": "isSubmitting", "type": "boolean", "default": "false" },
+        { "name": "defaultEmail", "type": "string" }
+      ],
+      "a11y": ["labelled fields; password input uses autocomplete=\"current-password\""],
+      "snippet": "<PasswordSignIn onSubmit={signIn} onForgotPassword={openReset} />"
+    },
+    {
       "name": "Badge",
       "status": "available",
       "category": "feedback",
