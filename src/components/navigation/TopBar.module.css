@@ -11,6 +11,9 @@
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
   border-bottom: 1px solid var(--color-border);
+  /* Never let the header force the page wider than the viewport (mobile). */
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .menu {
@@ -21,6 +24,10 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .actions {
@@ -28,4 +35,8 @@
   align-items: center;
   gap: var(--space-2);
   margin-left: auto;
+  /* Wrap (and shrink) instead of overflowing on narrow screens. */
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
 }

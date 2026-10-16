@@ -1,7 +1,7 @@
 {
   "name": "@agiler/ui",
-  "version": "0.5.0",
-  "generatedAt": "2026-10-16T17:33:42.285Z",
+  "version": "0.5.1",
+  "generatedAt": "2026-10-16T17:46:44.124Z",
   "themeAttribute": "data-theme",
   "themes": [
     "light",

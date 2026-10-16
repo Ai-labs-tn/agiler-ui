@@ -5,6 +5,16 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-10-16
+
+### Fixed
+
+- **`TopBar` no longer forces the page wider than the viewport.** The header and its actions slot now
+  wrap and shrink (`flex-wrap: wrap; min-width: 0`) and the title truncates, so a narrow screen no
+  longer gets a few pixels of **horizontal page scroll** — which on touch devices hijacks vertical
+  swipes and reads as "scrolling is broken". This affected AGILER's project/backlog/workflow screens
+  and every generated order project.
+
 ## [0.5.0] — 2026-10-16
 
 ### Added
