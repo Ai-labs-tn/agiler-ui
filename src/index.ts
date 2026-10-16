@@ -104,6 +104,21 @@ export {
   type PasswordSignInProps,
 } from './auth';
 
+// Charts (token-driven bar / donut / progress — no chart dependency)
+export {
+  BarChart,
+  DonutChart,
+  HBarChart,
+  ProgressBar,
+  type BarChartDatum,
+  type BarChartProps,
+  type ChartVariant,
+  type DonutChartProps,
+  type DonutSegment,
+  type HBarChartProps,
+  type ProgressBarProps,
+} from './charts';
+
 // Layout archetypes (page skeletons an order picks — see v3.1 plan §3.2)
 export {
   AsymmetricalLayout,

@@ -1,7 +1,7 @@
 {
   "name": "@agiler/ui",
-  "version": "0.4.0",
-  "generatedAt": "2026-10-15T04:43:32.873Z",
+  "version": "0.5.0",
+  "generatedAt": "2026-10-16T17:33:42.285Z",
   "themeAttribute": "data-theme",
   "themes": [
     "light",
@@ -11,11 +11,11 @@
   "tokensFile": "src/styles/tokens.css",
   "themesFile": "src/styles/themes.css",
   "counts": {
-    "available": 49,
+    "available": 53,
     "planned": 0,
     "api": 11,
     "layouts": 8,
-    "total": 49
+    "total": 53
   },
   "rules": [
     "Compose screens only from components declared here; never write raw CSS, hex colours or inline styles.",
@@ -351,6 +351,48 @@
       "snippet": "<Badge variant=\"success\" size=\"sm\">Delivered</Badge>"
     },
     {
+      "name": "BarChart",
+      "status": "available",
+      "category": "charts",
+      "source": "src/charts/BarChart.tsx",
+      "summary": "Vertical bar chart for small series (e.g. per-week throughput); responsive, no chart library.",
+      "props": [
+        {
+          "name": "data",
+          "type": "BarChartDatum[]",
+          "required": true
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "height",
+          "type": "string",
+          "default": "'10rem'"
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number) => string"
+        },
+        {
+          "name": "variant",
+          "type": "ChartVariant",
+          "default": "'primary'"
+        },
+        {
+          "name": "emptyLabel",
+          "type": "ReactNode"
+        }
+      ],
+      "a11y": [
+        "role=\"img\" with a required aria-label — the values are the accessible description's job",
+        "variant colours are tokens; pair the number with the bar so colour is never the only signal"
+      ],
+      "snippet": "<BarChart ariaLabel=\"Stories completed per week\" data={[{ label: 'W1', value: 3 }]} />"
+    },
+    {
       "name": "Breadcrumbs",
       "status": "available",
       "category": "navigation",
@@ -635,6 +677,57 @@
       "snippet": "<DatePicker label=\"Start date\" mode=\"date\" value={start} onChange={…} />"
     },
     {
+      "name": "DonutChart",
+      "status": "available",
+      "category": "charts",
+      "source": "src/charts/DonutChart.tsx",
+      "summary": "Donut/pie chart with a centre value and a legend (SVG, tokenised).",
+      "props": [
+        {
+          "name": "segments",
+          "type": "DonutSegment[]",
+          "required": true
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "centerValue",
+          "type": "ReactNode"
+        },
+        {
+          "name": "centerLabel",
+          "type": "ReactNode"
+        },
+        {
+          "name": "size",
+          "type": "string",
+          "default": "'9rem'"
+        },
+        {
+          "name": "thickness",
+          "type": "number",
+          "default": "5"
+        },
+        {
+          "name": "showLegend",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number) => string"
+        }
+      ],
+      "a11y": [
+        "role=\"img\" with a required aria-label",
+        "segments cycle through token variants; the legend repeats every value and percentage"
+      ],
+      "snippet": "<DonutChart ariaLabel=\"Delivery status\" centerValue={12} centerLabel=\"orders\" segments={segments} />"
+    },
+    {
       "name": "Drawer",
       "status": "available",
       "category": "modals",
@@ -850,6 +943,42 @@
         "layout only — keep DOM order equal to reading order"
       ],
       "snippet": "<Grid minItemWidth=\"18rem\" gap={4}>{tiles}</Grid>"
+    },
+    {
+      "name": "HBarChart",
+      "status": "available",
+      "category": "charts",
+      "source": "src/charts/BarChart.tsx",
+      "summary": "Horizontal bar chart with a value column — best for comparing named amounts.",
+      "props": [
+        {
+          "name": "data",
+          "type": "BarChartDatum[]",
+          "required": true
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number) => string"
+        },
+        {
+          "name": "variant",
+          "type": "ChartVariant",
+          "default": "'primary'"
+        },
+        {
+          "name": "emptyLabel",
+          "type": "ReactNode"
+        }
+      ],
+      "a11y": [
+        "role=\"img\" with a required aria-label; each row prints its value as text"
+      ],
+      "snippet": "<HBarChart ariaLabel=\"Budget vs quote\" formatValue={formatCurrency} data={rows} />"
     },
     {
       "name": "IconButton",
@@ -1336,6 +1465,48 @@
         "labelled fields; password input uses autocomplete=\"current-password\""
       ],
       "snippet": "<PasswordSignIn onSubmit={signIn} onForgotPassword={openReset} />"
+    },
+    {
+      "name": "ProgressBar",
+      "status": "available",
+      "category": "charts",
+      "source": "src/charts/ProgressBar.tsx",
+      "summary": "Labelled progress bar (role=progressbar) for delivery progress and completion.",
+      "props": [
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "showValue",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "variant",
+          "type": "ChartVariant",
+          "default": "'primary'"
+        },
+        {
+          "name": "size",
+          "type": "'sm' | 'md'",
+          "default": "'sm'"
+        },
+        {
+          "name": "formatValue",
+          "type": "(value: number) => string"
+        }
+      ],
+      "a11y": [
+        "native role=progressbar with aria-valuenow/min/max and a required label"
+      ],
+      "snippet": "<ProgressBar label=\"Delivery progress\" value={42} />"
     },
     {
       "name": "PublicShell",

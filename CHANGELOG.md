@@ -5,6 +5,21 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-10-16
+
+### Added
+
+- **Chart primitives** (4): `BarChart` (vertical), `HBarChart` (horizontal, with a value column),
+  `DonutChart` (SVG donut with a centre value + legend) and `ProgressBar` (`role=progressbar`).
+  All token-driven (no chart dependency), responsive (flex/SVG, no fixed viewBox) and accessible
+  (`role="img"` + a required `aria-label`; the donut legend repeats every value).
+
+### Fixed
+
+- `DataTable`'s horizontal scroller now sets `overscroll-behavior-x: contain` and
+  `touch-action: pan-x pan-y`, so a vertical swipe over a wide table scrolls the **page** instead
+  of being swallowed by the table's own scroller (the mobile "scroll doesn't work" bug).
+
 ## [0.4.0] — 2026-10-15
 
 ### Added
